@@ -1,0 +1,890 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : localhost
+ Source Server Type    : MySQL
+ Source Server Version : 100408
+ Source Host           : localhost:3306
+ Source Schema         : spk_demo_pm
+
+ Target Server Type    : MySQL
+ Target Server Version : 100408
+ File Encoding         : 65001
+
+ Date: 24/07/2020 09:03:50
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for ak_data_bobot
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_bobot`;
+CREATE TABLE `ak_data_bobot`  (
+  `bobot_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `bobot_selisih` int(11) NOT NULL DEFAULT 0,
+  `bobot_nilai` decimal(10, 1) NOT NULL DEFAULT 0,
+  `bobot_keterangan` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_date` datetime(0) NOT NULL,
+  `updated_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`bobot_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_bobot
+-- ----------------------------
+INSERT INTO `ak_data_bobot` VALUES (1, 0, 5.0, 'Tidak ada selisih', 'SUPPORT', '2020-02-20 22:16:35', NULL, NULL, 0);
+INSERT INTO `ak_data_bobot` VALUES (2, 1, 4.5, 'Kelebihan 1 tingkat/level', 'SUPPORT', '2020-02-20 22:16:53', NULL, NULL, 0);
+INSERT INTO `ak_data_bobot` VALUES (3, -1, 4.0, 'kekurangan 1 tingkat/level', 'SUPPORT', '2020-02-20 22:17:22', NULL, NULL, 0);
+INSERT INTO `ak_data_bobot` VALUES (4, 2, 3.5, 'kelebihan 2 tingkat/level', 'SUPPORT', '2020-02-20 22:17:35', NULL, NULL, 0);
+INSERT INTO `ak_data_bobot` VALUES (5, -2, 3.0, 'kekurangan 2 tingkat/level', 'SUPPORT', '2020-02-20 22:17:51', NULL, NULL, 0);
+INSERT INTO `ak_data_bobot` VALUES (6, 3, 2.5, 'kelebihan 3 tingkat/level', 'SUPPORT', '2020-02-20 22:18:05', NULL, NULL, 0);
+INSERT INTO `ak_data_bobot` VALUES (7, -3, 2.0, 'kekurangan 3 tingkat/level', 'SUPPORT', '2020-02-20 22:18:20', NULL, NULL, 0);
+INSERT INTO `ak_data_bobot` VALUES (8, 4, 1.5, 'kelebihan 4 tingkat/level', 'SUPPORT', '2020-02-20 22:18:40', NULL, NULL, 0);
+INSERT INTO `ak_data_bobot` VALUES (9, -4, 1.0, 'kekurangan 4 tingkat/level', 'SUPPORT', '2020-02-20 22:18:54', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_kriteria
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_kriteria`;
+CREATE TABLE `ak_data_kriteria`  (
+  `kriteria_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `project_id` bigint(20) NOT NULL,
+  `kriteria_nama` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_date` datetime(0) NOT NULL,
+  `updated_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`kriteria_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_kriteria
+-- ----------------------------
+INSERT INTO `ak_data_kriteria` VALUES (1, 1, 'Akademik', 'SUPPORT', '2020-02-20 21:47:41', NULL, NULL, 0);
+INSERT INTO `ak_data_kriteria` VALUES (2, 1, 'Non Akademik', 'SUPPORT', '2020-02-20 21:47:52', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_project
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_project`;
+CREATE TABLE `ak_data_project`  (
+  `project_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `project_nama` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_date` datetime(0) NOT NULL,
+  `updated_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`project_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_project
+-- ----------------------------
+INSERT INTO `ak_data_project` VALUES (1, 'REKOMEDASI KULIAH/KERJA/WIRASWASTA', 'SUPPORT', '2020-02-20 21:47:17', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_rekomendasi
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_rekomendasi`;
+CREATE TABLE `ak_data_rekomendasi`  (
+  `rekomendasi_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `rekomendasi_kode` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_date` datetime(0) NOT NULL,
+  `updated_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`rekomendasi_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_rekomendasi
+-- ----------------------------
+INSERT INTO `ak_data_rekomendasi` VALUES (1, 'Kuliah', 'SUPPORT', '2020-02-20 21:50:48', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi` VALUES (2, 'Kerja', 'SUPPORT', '2020-02-20 21:50:54', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi` VALUES (3, 'Wiraswasta', 'SUPPORT', '2020-02-20 21:51:00', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_rekomendasi_nilai
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_rekomendasi_nilai`;
+CREATE TABLE `ak_data_rekomendasi_nilai`  (
+  `rekomendasi_nilai_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `kriteria_id` bigint(20) NOT NULL,
+  `subkriteria_id` bigint(20) NOT NULL,
+  `rekomendasi_id` bigint(20) NOT NULL,
+  `rekomendasi_nilai_bobot` decimal(10, 2) NOT NULL DEFAULT 0,
+  `created_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_date` datetime(0) NOT NULL,
+  `updated_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`rekomendasi_nilai_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 40 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_rekomendasi_nilai
+-- ----------------------------
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (1, 1, 1, 1, 7.00, 'SUPPORT', '2020-02-20 21:51:14', 'SUPPORT', '2020-02-20 21:57:27', 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (2, 1, 2, 1, 8.00, 'SUPPORT', '2020-02-20 21:57:42', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (3, 1, 3, 1, 7.00, 'SUPPORT', '2020-02-20 21:57:55', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (4, 1, 4, 1, 8.00, 'SUPPORT', '2020-02-20 21:58:05', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (5, 1, 5, 1, 9.00, 'SUPPORT', '2020-02-20 21:58:16', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (6, 1, 6, 1, 8.00, 'SUPPORT', '2020-02-20 21:58:25', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (7, 1, 1, 2, 8.00, 'SUPPORT', '2020-02-20 21:58:38', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (8, 1, 2, 2, 7.00, 'SUPPORT', '2020-02-20 21:58:48', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (9, 1, 3, 2, 9.00, 'SUPPORT', '2020-02-20 21:59:02', 'SUPPORT', '2020-02-20 21:59:14', 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (10, 1, 4, 2, 7.00, 'SUPPORT', '2020-02-20 21:59:26', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (11, 1, 5, 2, 6.00, 'SUPPORT', '2020-02-20 21:59:40', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (12, 1, 6, 2, 7.00, 'SUPPORT', '2020-02-20 21:59:53', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (13, 1, 1, 3, 8.00, 'SUPPORT', '2020-02-20 22:09:51', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (14, 1, 2, 3, 9.00, 'SUPPORT', '2020-02-20 22:11:19', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (15, 1, 3, 3, 7.00, 'SUPPORT', '2020-02-20 22:11:30', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (16, 1, 4, 3, 6.00, 'SUPPORT', '2020-02-20 22:12:02', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (17, 1, 5, 3, 8.00, 'SUPPORT', '2020-02-20 22:12:11', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (18, 1, 6, 3, 8.00, 'SUPPORT', '2020-02-20 22:12:20', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (19, 2, 7, 1, 7.00, 'SUPPORT', '2020-02-20 22:12:59', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (20, 2, 8, 1, 6.00, 'SUPPORT', '2020-02-20 22:13:17', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (21, 2, 9, 1, 8.00, 'SUPPORT', '2020-02-20 22:13:32', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (22, 2, 10, 1, 7.00, 'SUPPORT', '2020-02-20 22:13:43', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (23, 2, 7, 2, 8.00, 'SUPPORT', '2020-02-20 22:13:56', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (24, 2, 8, 2, 8.00, 'SUPPORT', '2020-02-20 22:14:11', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (25, 2, 9, 2, 7.00, 'SUPPORT', '2020-02-20 22:14:20', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (26, 2, 10, 2, 6.00, 'SUPPORT', '2020-02-20 22:14:28', NULL, NULL, 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (27, 2, 7, 1, 6.00, 'SUPPORT', '2020-02-20 22:14:37', 'SUPPORT', '2020-02-20 22:15:33', 1);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (28, 2, 7, 3, 7.00, 'SUPPORT', '2020-02-20 22:14:48', 'Admin', '2020-07-23 20:30:20', 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (29, 2, 8, 3, 8.00, 'SUPPORT', '2020-02-20 22:14:56', 'Admin', '2020-07-23 20:30:30', 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (30, 2, 9, 3, 7.00, 'SUPPORT', '2020-02-20 22:15:04', 'Admin', '2020-07-23 20:30:43', 0);
+INSERT INTO `ak_data_rekomendasi_nilai` VALUES (31, 2, 10, 3, 6.00, 'SUPPORT', '2020-02-20 22:16:03', 'Admin', '2020-07-23 20:30:50', 0);
+
+-- ----------------------------
+-- Table structure for ak_data_siswa_nilai
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_siswa_nilai`;
+CREATE TABLE `ak_data_siswa_nilai`  (
+  `nilai_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `subkriteria_id` bigint(20) NOT NULL,
+  `user_id` bigint(20) NOT NULL,
+  `siswa_nilai` int(11) NOT NULL DEFAULT 0,
+  `created_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_date` datetime(0) NOT NULL,
+  `updated_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`nilai_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_siswa_nilai
+-- ----------------------------
+INSERT INTO `ak_data_siswa_nilai` VALUES (18, 1, 4, 8, 'Admin', '2020-07-23 20:24:59', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (19, 2, 4, 7, 'Admin', '2020-07-23 20:25:08', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (20, 3, 4, 9, 'Admin', '2020-07-23 20:25:16', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (21, 4, 4, 7, 'Admin', '2020-07-23 20:25:30', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (22, 5, 4, 7, 'Admin', '2020-07-23 20:25:39', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (23, 6, 4, 9, 'Admin', '2020-07-23 20:25:51', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (24, 7, 4, 6, 'Admin', '2020-07-23 20:26:09', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (25, 8, 4, 7, 'Admin', '2020-07-23 20:26:21', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (26, 9, 4, 8, 'Admin', '2020-07-23 20:26:33', NULL, NULL, 0);
+INSERT INTO `ak_data_siswa_nilai` VALUES (27, 10, 4, 6, 'Admin', '2020-07-23 20:26:44', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_subkriteria
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_subkriteria`;
+CREATE TABLE `ak_data_subkriteria`  (
+  `subkriteria_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `kriteria_id` bigint(20) NOT NULL,
+  `subkriteria_kode` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `subkriteria_nama` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `subkriteria_keterangan` enum('Core','Secondary') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `created_date` datetime(0) NOT NULL,
+  `updated_by` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NULL DEFAULT 0,
+  PRIMARY KEY (`subkriteria_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_subkriteria
+-- ----------------------------
+INSERT INTO `ak_data_subkriteria` VALUES (1, 1, 'SK-01', 'Pendidikan Agama', 'Core', 'SUPPORT', '2020-02-20 21:48:07', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (2, 1, 'SK-02', 'Bahasa Indonesia', 'Core', 'SUPPORT', '2020-02-20 21:48:25', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (3, 1, 'SK-03', 'Bahasa Inggris', 'Core', 'SUPPORT', '2020-02-20 21:48:41', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (4, 1, 'SK-04', 'Matematika', 'Secondary', 'SUPPORT', '2020-02-20 21:48:54', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (5, 1, 'SK-05', 'Keterampilan', 'Secondary', 'SUPPORT', '2020-02-20 21:49:12', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (6, 1, 'SK-06', 'Kejuruan/Produktif', 'Secondary', 'SUPPORT', '2020-02-20 21:49:27', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (7, 2, 'SK-07', 'Tes Pengetahuan', 'Core', 'SUPPORT', '2020-02-20 21:49:42', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (8, 2, 'SK-08', 'Minat Siswa', 'Core', 'SUPPORT', '2020-02-20 21:50:03', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (9, 2, 'SK-09', 'Minat Orang Tua', 'Secondary', 'SUPPORT', '2020-02-20 21:50:22', NULL, NULL, 0);
+INSERT INTO `ak_data_subkriteria` VALUES (10, 2, 'SK-10', 'Catatan Prestasi', 'Secondary', 'SUPPORT', '2020-02-20 21:50:36', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_system_info
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_system_info`;
+CREATE TABLE `ak_data_system_info`  (
+  `info_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `info_name` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `created_by` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'System',
+  `created_date` datetime(0) NOT NULL DEFAULT current_timestamp(0),
+  `updated_by` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`info_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_system_info
+-- ----------------------------
+INSERT INTO `ak_data_system_info` VALUES (1, 'SPK PROFILE MATCHING', 'System', '2020-01-07 11:23:58', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_system_instansi
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_system_instansi`;
+CREATE TABLE `ak_data_system_instansi`  (
+  `instansi_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `instansi_logo` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `instansi_nama` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `instansi_alamat` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `instansi_alamat_email` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `instansi_website` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `instansi_kontak` char(25) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `created_by` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'System',
+  `created_date` datetime(0) NOT NULL DEFAULT current_timestamp(0),
+  `updated_by` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`instansi_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_system_instansi
+-- ----------------------------
+INSERT INTO `ak_data_system_instansi` VALUES (1, NULL, 'AFIAH SHOLIHAH', 'Jl. Jatimeta Gn. Jati No. 1 Cirebon', NULL, NULL, '02318339210', 'System', '2020-01-09 12:21:43', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_system_level
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_system_level`;
+CREATE TABLE `ak_data_system_level`  (
+  `level_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `level_nama` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `created_by` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'System',
+  `created_date` datetime(0) NOT NULL DEFAULT current_timestamp(0),
+  `updated_by` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`level_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_system_level
+-- ----------------------------
+INSERT INTO `ak_data_system_level` VALUES (1, 'Master', 'System', '2020-01-30 01:46:34', NULL, NULL, 0);
+INSERT INTO `ak_data_system_level` VALUES (2, 'Admin', 'System', '2020-01-30 01:46:41', NULL, NULL, 0);
+INSERT INTO `ak_data_system_level` VALUES (3, 'BK', 'System', '2020-01-30 01:46:48', NULL, NULL, 0);
+INSERT INTO `ak_data_system_level` VALUES (4, 'Siswa', 'System', '2020-01-30 01:46:56', NULL, NULL, 0);
+
+-- ----------------------------
+-- Table structure for ak_data_system_log
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_system_log`;
+CREATE TABLE `ak_data_system_log`  (
+  `id` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `ip_address` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `timestamp` int(10) UNSIGNED NOT NULL,
+  `data` blob NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_system_log
+-- ----------------------------
+INSERT INTO `ak_data_system_log` VALUES ('0810s6jpvbdm4eb0sgn3c49t6mtmkqfq', '192.168.1.5', 1595247534, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373533333B);
+INSERT INTO `ak_data_system_log` VALUES ('0a5qtk5102uu13df48cgfa5m2ondbnkr', '192.168.1.5', 1595383043, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333034333B);
+INSERT INTO `ak_data_system_log` VALUES ('0fltg8ntq06vtn409v5ddtjq7290ce2q', '192.168.1.5', 1595355120, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353132303B);
+INSERT INTO `ak_data_system_log` VALUES ('0fr1515lvj84svrlsmfh1kefg5rhl4d5', '192.168.1.5', 1595250548, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534383B);
+INSERT INTO `ak_data_system_log` VALUES ('0hml7v3q9alf0kgho1004rmrderdvlpm', '192.168.1.5', 1595383047, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333034373B);
+INSERT INTO `ak_data_system_log` VALUES ('0llkk2kgt5kunfqigcakaesc4uvjl0e8', '192.168.1.5', 1595250684, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638343B);
+INSERT INTO `ak_data_system_log` VALUES ('0n62tplsjl4c3ib1sdvnirhmb6tfb4ci', '192.168.1.5', 1595251475, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313437353B);
+INSERT INTO `ak_data_system_log` VALUES ('0ofbkgf3uh8h2l73qsb1mo64rfruef46', '192.168.1.5', 1595254950, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235343935303B);
+INSERT INTO `ak_data_system_log` VALUES ('0p8p0lkrdcrhs6lu7lub8fvr7jlpp5ei', '192.168.1.5', 1595248741, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383734313B);
+INSERT INTO `ak_data_system_log` VALUES ('0pam3vi8vbqtqdcn2cug7v1j5mr6ig3t', '192.168.1.5', 1595251286, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313238363B);
+INSERT INTO `ak_data_system_log` VALUES ('0s1is3j3n284koki322kgr3pp7k6u156', '192.168.1.5', 1595250548, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534383B);
+INSERT INTO `ak_data_system_log` VALUES ('0t544e18bhgo4mvgdnobj0iksgsqg59u', '192.168.1.5', 1595250284, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303238343B);
+INSERT INTO `ak_data_system_log` VALUES ('0tn3gp73o9f4fisid1059vgrfau6jeql', '192.168.1.5', 1595250477, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303437373B);
+INSERT INTO `ak_data_system_log` VALUES ('10snh4kdg4dmltecna8vmrcbm17aggcb', '192.168.1.5', 1595257391, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373339313B);
+INSERT INTO `ak_data_system_log` VALUES ('1b4tqfl21greafanurmqf4lhs81gbqeb', '192.168.1.5', 1595389648, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393634383B);
+INSERT INTO `ak_data_system_log` VALUES ('1c5a07r7fdtgb38isk881td7bqpu8ap7', '192.168.1.5', 1595390689, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303638393B);
+INSERT INTO `ak_data_system_log` VALUES ('1gp9fa96pb13hi3vm23i4j86un9ettop', '192.168.1.5', 1595383047, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333034373B);
+INSERT INTO `ak_data_system_log` VALUES ('1h7bhd5jttcsurhgnfb4mq3jjm7fup3p', '192.168.1.5', 1595256802, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363830323B);
+INSERT INTO `ak_data_system_log` VALUES ('1idmtaqb2svaprcqm8lrpeeg61rvtesb', '192.168.1.5', 1595257427, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373432373B);
+INSERT INTO `ak_data_system_log` VALUES ('1kj88gcc722mc76h2b17gurb8h7hdr5i', '192.168.1.5', 1595382974, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338323937343B);
+INSERT INTO `ak_data_system_log` VALUES ('1l56qnuvcl3ji9cjbsipvlmdsrg9r2f6', '192.168.1.5', 1595257986, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938363B);
+INSERT INTO `ak_data_system_log` VALUES ('1noi7nb1ihtl7lfu42c6a9uiffbpmavr', '192.168.1.5', 1595256694, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363639343B);
+INSERT INTO `ak_data_system_log` VALUES ('1ri5d7rqtvipg3obc3fn8fp787ia5ark', '192.168.1.5', 1595251676, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313637363B);
+INSERT INTO `ak_data_system_log` VALUES ('1rpmbne2ro4eh8kn0sd9fil0cq9cp5be', '192.168.1.5', 1595257408, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373430383B);
+INSERT INTO `ak_data_system_log` VALUES ('1v1gmm5jeabvm3p8qe2sh9s8t7i8h29e', '192.168.1.5', 1595250540, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534303B);
+INSERT INTO `ak_data_system_log` VALUES ('22ng8e5kfl34eiu3ascd7op3ggfmjt4g', '192.168.1.5', 1595254946, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235343934363B);
+INSERT INTO `ak_data_system_log` VALUES ('239ef93l89h8fsth6mvmo9gdahpeshee', '192.168.1.5', 1595256360, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363336303B);
+INSERT INTO `ak_data_system_log` VALUES ('2c9oqhj59iaunj70lgh40f7v8s8kp9hq', '192.168.1.5', 1595354954, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343935343B);
+INSERT INTO `ak_data_system_log` VALUES ('2h6ooac8relrmce8leai2dou2i6l6efn', '192.168.1.5', 1595251275, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313237353B);
+INSERT INTO `ak_data_system_log` VALUES ('2i7ou2sao57p8bsmk4avl2kjeepa2962', '192.168.1.5', 1595248826, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383832363B);
+INSERT INTO `ak_data_system_log` VALUES ('2ihobrj0ap4aqsdrk7k76u4p7hi8bj0f', '192.168.1.5', 1595250682, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638323B);
+INSERT INTO `ak_data_system_log` VALUES ('2kso7lqu185t2kbvmmjkugkctdoc1815', '192.168.1.5', 1595256275, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363237343B);
+INSERT INTO `ak_data_system_log` VALUES ('2s6b034gmrg65fqq3vjrb6ubeguehvr9', '192.168.1.5', 1595257425, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373432353B);
+INSERT INTO `ak_data_system_log` VALUES ('2sqca6rae9hdieogna673vc1ms7v0iic', '192.168.1.5', 1595251226, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313232363B);
+INSERT INTO `ak_data_system_log` VALUES ('2ul9aicjfvb1k1vqohf3rravmrdhmp8v', '192.168.1.5', 1595250681, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638313B);
+INSERT INTO `ak_data_system_log` VALUES ('2vs0dadvkvhophtvq58si1sgjm47f00l', '192.168.1.5', 1595357055, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373035353B);
+INSERT INTO `ak_data_system_log` VALUES ('347k7mfv3lf9gf6a0o52fkfbvif87ppd', '192.168.1.5', 1595357186, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373138363B);
+INSERT INTO `ak_data_system_log` VALUES ('34r79hd1pif7mc0gck38vs86jcruv9fi', '192.168.1.5', 1595256706, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363730363B);
+INSERT INTO `ak_data_system_log` VALUES ('38oklrq7th5t6l9n256iqpj68hrhd7gj', '192.168.1.5', 1595257418, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373431383B);
+INSERT INTO `ak_data_system_log` VALUES ('38qi1e5siduaoalcmgdrvi19udsfmt93', '192.168.1.5', 1595256148, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363134383B);
+INSERT INTO `ak_data_system_log` VALUES ('3af21mksrtgadse5alh7bdiv8d77glba', '192.168.1.5', 1595257987, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938373B);
+INSERT INTO `ak_data_system_log` VALUES ('3gdhpjumhcagb7b8a1le3g30tbi4tecq', '192.168.1.5', 1595247675, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637353B);
+INSERT INTO `ak_data_system_log` VALUES ('3mfqmcv8pak1vtqkf9vij4fonsftcteu', '192.168.1.5', 1595356735, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363733353B);
+INSERT INTO `ak_data_system_log` VALUES ('3n2viobv5q7ug2qgqebcr4p4dbuufpee', '192.168.1.5', 1595391642, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313634323B);
+INSERT INTO `ak_data_system_log` VALUES ('3o27nmj9r9c72ll6mgt0d40ars8j34j0', '192.168.1.5', 1595250540, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534303B);
+INSERT INTO `ak_data_system_log` VALUES ('3oiik0hjbtii1uejiaiaio77ic307etr', '192.168.1.5', 1595248858, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383835383B);
+INSERT INTO `ak_data_system_log` VALUES ('3p1ddv0e56893r5pclif8jsi13tbg503', '192.168.1.5', 1595354988, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343938383B);
+INSERT INTO `ak_data_system_log` VALUES ('3tlru77s577v8iebrnro6v60g8uenv4i', '192.168.1.5', 1595257414, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373431343B);
+INSERT INTO `ak_data_system_log` VALUES ('3tr0l80uktusjm9ssmm2rcspnftd3k28', '192.168.1.5', 1595355244, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353234343B);
+INSERT INTO `ak_data_system_log` VALUES ('41qhatu0iobo4juqfh99ifsqf0l4qttl', '192.168.1.5', 1595257516, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373531363B);
+INSERT INTO `ak_data_system_log` VALUES ('41rqs37s164sc9oleu8s41gpl5imldr0', '192.168.1.5', 1595257005, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373030353B);
+INSERT INTO `ak_data_system_log` VALUES ('466oh9f2ksi0s3pup8cv2fsblb47jnna', '192.168.1.5', 1595247679, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637393B);
+INSERT INTO `ak_data_system_log` VALUES ('4tkntgc3j411lafg952l8d2s6h1j4lmo', '192.168.1.5', 1595257982, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938323B);
+INSERT INTO `ak_data_system_log` VALUES ('4ulalio95vk9lm02gq8cm648qsbapmms', '192.168.1.5', 1595355247, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353234373B);
+INSERT INTO `ak_data_system_log` VALUES ('4v29t4ns8equb2h4tm8a8cj9pbnsesr0', '192.168.1.5', 1595248826, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383832363B);
+INSERT INTO `ak_data_system_log` VALUES ('50t87k571udm3o6pvdklq6qi9ou5cfs1', '192.168.1.5', 1595391679, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313637393B);
+INSERT INTO `ak_data_system_log` VALUES ('53jhn7dcp62bvvsqj5mhliasnp7fgjud', '192.168.1.5', 1595248826, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383832363B);
+INSERT INTO `ak_data_system_log` VALUES ('5cbvpu23lb3aecepiskkpp3sie6bi42p', '192.168.1.5', 1595383399, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333339393B);
+INSERT INTO `ak_data_system_log` VALUES ('5djsc0fr3uchepel6jimd5of4rcreorp', '192.168.1.5', 1595355247, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353234373B);
+INSERT INTO `ak_data_system_log` VALUES ('5dtbugbkkfo6ak85mifb8iepvpuonb58', '192.168.1.5', 1595251510, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313531303B);
+INSERT INTO `ak_data_system_log` VALUES ('5f7m1ckmi8de5nt2iajbq9r4vjsq7dq7', '192.168.1.5', 1595250592, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303539323B);
+INSERT INTO `ak_data_system_log` VALUES ('5h4po69jotjj3l2vp4jpkhq35eg8bf4j', '192.168.1.5', 1595357185, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373138353B);
+INSERT INTO `ak_data_system_log` VALUES ('5j1holm8j5frkpqp69qqaqv9bmfgd5jo', '192.168.1.5', 1595354407, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343430373B);
+INSERT INTO `ak_data_system_log` VALUES ('5lfbkemqs5g0o8sdq4afo47slv6chktu', '192.168.1.5', 1595247674, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637343B);
+INSERT INTO `ak_data_system_log` VALUES ('5q4mkjfap79tet2hn2os7t4ifmmurv0k', '192.168.1.5', 1595251027, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313032373B);
+INSERT INTO `ak_data_system_log` VALUES ('5rm9khb7jcbbcsv9p3pk3tegiidjgmlu', '192.168.1.5', 1595250232, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303233323B);
+INSERT INTO `ak_data_system_log` VALUES ('5sl8hisq3hri58dpr230lvlqnsmqne83', '192.168.1.5', 1595355172, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353137323B);
+INSERT INTO `ak_data_system_log` VALUES ('5svopa5ons56d3s4tbgtn8t2v5prequj', '192.168.1.5', 1595355276, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353237363B);
+INSERT INTO `ak_data_system_log` VALUES ('5u0pdm2b1t9vq5ga0oc3u2erdsesudg4', '192.168.1.5', 1595257976, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937363B);
+INSERT INTO `ak_data_system_log` VALUES ('5u7u5fphaeaiumaregsi5reh9tauhpa5', '192.168.1.5', 1595389648, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393634383B);
+INSERT INTO `ak_data_system_log` VALUES ('5v4f5v7fl2hejvoind05spnkb2hitg5e', '192.168.1.5', 1595257405, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373430353B);
+INSERT INTO `ak_data_system_log` VALUES ('5v64luvb34c05s9j4e8np77ihjg1oupl', '192.168.1.5', 1595250477, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303437373B);
+INSERT INTO `ak_data_system_log` VALUES ('60s4thviis4e0jba5s8p62790qo4pev0', '192.168.1.5', 1595251507, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313530373B);
+INSERT INTO `ak_data_system_log` VALUES ('639dutv073dlu5nc7at2ero1joq7k2gi', '192.168.1.5', 1595251670, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313637303B);
+INSERT INTO `ak_data_system_log` VALUES ('63r39g3428n49g0bn5u1cecdoh5d7a91', '192.168.1.5', 1595382967, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338323936363B);
+INSERT INTO `ak_data_system_log` VALUES ('640ifubonivo1n43op9htltkvblhidep', '192.168.1.5', 1595257402, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373430313B);
+INSERT INTO `ak_data_system_log` VALUES ('678mar13hud9ef8nrq3gqqdru3ca4vpn', '192.168.1.5', 1595256378, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363337383B);
+INSERT INTO `ak_data_system_log` VALUES ('692fd049b3odp445gkrlvqkigu0grjac', '192.168.1.5', 1595355103, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353130333B);
+INSERT INTO `ak_data_system_log` VALUES ('6dv5hlm7lp0gi6cno9pscqv9fge1chq5', '192.168.1.5', 1595257995, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373939353B);
+INSERT INTO `ak_data_system_log` VALUES ('6ob12hdanf1uj8dqdoevualogqk0fb41', '192.168.1.5', 1595251235, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313233353B);
+INSERT INTO `ak_data_system_log` VALUES ('6ol8v2uqle7c3gr7v3r8n2t69h15rvao', '192.168.1.5', 1595355286, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353238363B);
+INSERT INTO `ak_data_system_log` VALUES ('6qpqq67heih700nujgi1o72eg4ah9rg6', '192.168.1.5', 1595256699, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363639393B);
+INSERT INTO `ak_data_system_log` VALUES ('6s3ffoimjuuj503bsf9j7ts3n438voc3', '192.168.1.5', 1595383905, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333930353B);
+INSERT INTO `ak_data_system_log` VALUES ('6v105656dtansjf11p2lin3eut4dnrug', '192.168.1.5', 1595257971, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937313B);
+INSERT INTO `ak_data_system_log` VALUES ('6v9tsa3jtb43q66eir7bl9f6vud05ucr', '192.168.1.5', 1595257964, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373936343B);
+INSERT INTO `ak_data_system_log` VALUES ('6vs75pr523ni23ocscss43jkb5f5t27a', '192.168.1.5', 1595251681, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313638313B);
+INSERT INTO `ak_data_system_log` VALUES ('70do83adlcc03pdamnj7ppldcva98src', '192.168.1.5', 1595247676, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637363B);
+INSERT INTO `ak_data_system_log` VALUES ('720ltho1vobnq9n8ki13vu19n5eu4cei', '192.168.1.5', 1595256807, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363830373B);
+INSERT INTO `ak_data_system_log` VALUES ('725lq5v20so7qjdq3ds7a181jnosci7h', '192.168.1.5', 1595383395, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333339353B);
+INSERT INTO `ak_data_system_log` VALUES ('72f4mulfsap1lvl0gp1egl26ojaurfqf', '192.168.1.5', 1595247434, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373433343B);
+INSERT INTO `ak_data_system_log` VALUES ('745ba03fmdqjvel8te59kvbnmj214k11', '192.168.1.5', 1595256991, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363939313B);
+INSERT INTO `ak_data_system_log` VALUES ('763bg1ku1767pjfd28ke2o6quu4j4etk', '192.168.1.5', 1595250295, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303239353B);
+INSERT INTO `ak_data_system_log` VALUES ('7bjp5u6ofk9a37h7chia3mosujmhstdo', '192.168.1.5', 1595357086, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373038363B);
+INSERT INTO `ak_data_system_log` VALUES ('7ep5jo1dak3atftlc7rdhnfs1p1vrsos', '192.168.1.5', 1595354637, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343633373B);
+INSERT INTO `ak_data_system_log` VALUES ('7f959pesccjgaulusqhiqunaj686ptg6', '192.168.1.5', 1595250541, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534313B);
+INSERT INTO `ak_data_system_log` VALUES ('7he5k9rh73uk8mit3ff9nhhfq5hrjo77', '192.168.1.5', 1595254906, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235343930363B);
+INSERT INTO `ak_data_system_log` VALUES ('7hufseau7nmfqkhh453ao353n585vi0g', '192.168.1.5', 1595248291, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383239313B);
+INSERT INTO `ak_data_system_log` VALUES ('7k3sr20dq1vd5q47skq15qqhts87qgrs', '192.168.1.5', 1595356859, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363835393B);
+INSERT INTO `ak_data_system_log` VALUES ('7kp6j2gb2nb3rlpd5ksgi2ovklj17f6u', '192.168.1.5', 1595251226, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313232363B);
+INSERT INTO `ak_data_system_log` VALUES ('7le1ssd7e25dg6umfochufj0ukgsvpja', '192.168.1.5', 1595383890, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333839303B);
+INSERT INTO `ak_data_system_log` VALUES ('7mr1o2402nfhagcq2if9hrhf3ch7o9gd', '192.168.1.5', 1595250548, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534383B);
+INSERT INTO `ak_data_system_log` VALUES ('7t718fbdmjfatf5s9cb3nsq0jcu1afie', '192.168.1.5', 1595256335, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363333353B);
+INSERT INTO `ak_data_system_log` VALUES ('7uq0kmf8ddc7p5ujml81fk6dnc7o6i8a', '192.168.1.5', 1595355006, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353030363B);
+INSERT INTO `ak_data_system_log` VALUES ('81tfm88l6tcnspe6gm26oro0u0p80sua', '192.168.1.5', 1595256160, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363136303B);
+INSERT INTO `ak_data_system_log` VALUES ('823mum78473c166per821qqsalud2grk', '192.168.1.5', 1595388093, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338383039333B);
+INSERT INTO `ak_data_system_log` VALUES ('82kp749q51mmuptsf187d7enhg640jog', '192.168.1.5', 1595257976, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937363B);
+INSERT INTO `ak_data_system_log` VALUES ('84471jea8m8cbqstd2d5f9l2882ki16j', '192.168.1.5', 1595257397, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373339373B);
+INSERT INTO `ak_data_system_log` VALUES ('87qogs5883pcrtkggjnoqlr4f3gskv5o', '192.168.1.5', 1595250285, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303238353B);
+INSERT INTO `ak_data_system_log` VALUES ('8egabdf0cvf2ruau3mkobu9skdm6busl', '192.168.1.5', 1595251235, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313233353B);
+INSERT INTO `ak_data_system_log` VALUES ('8ft7uleq7e47jhvhv0allh8qiamesc0t', '192.168.1.5', 1595355162, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353136323B);
+INSERT INTO `ak_data_system_log` VALUES ('8i2r5q0s66niat5dda0452irgkh1gqa3', '192.168.1.5', 1595383040, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333034303B);
+INSERT INTO `ak_data_system_log` VALUES ('8j3vevt7eqtfmrbc6e3bpand254fe781', '192.168.1.5', 1595390629, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303632393B);
+INSERT INTO `ak_data_system_log` VALUES ('8m0glhu5itngftakf175es9c6hk4bdmc', '192.168.1.5', 1595256546, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363534363B);
+INSERT INTO `ak_data_system_log` VALUES ('8mqab2kfv0i5r5due0u3hn5kuii8913n', '192.168.1.5', 1595248220, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383232303B);
+INSERT INTO `ak_data_system_log` VALUES ('8n88nd04d385qhstgftuqjvuhhbonlg0', '192.168.1.5', 1595354570, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343537303B);
+INSERT INTO `ak_data_system_log` VALUES ('8tfudadjj5g2eufa9r1cfrgu3ruc91vg', '192.168.1.5', 1595257408, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373430383B);
+INSERT INTO `ak_data_system_log` VALUES ('8ubp5jliqcaempg0nhn1h683mu96rngj', '192.168.1.5', 1595248291, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383239313B);
+INSERT INTO `ak_data_system_log` VALUES ('93225gh8jao1e87sdn4rb1aep33q18st', '192.168.1.5', 1595356859, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363835383B);
+INSERT INTO `ak_data_system_log` VALUES ('96ad10emoej3jifiuonolp994ndi1k1e', '::1', 1595395479, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339353437393B69647C733A313A2232223B6B6F64657C733A31333A225553522F303232302F30303032223B6E616D617C733A353A2241646D696E223B6C6576656C7C733A353A2241646D696E223B417070496E666F7C733A32303A2253504B2050524F46494C45204D41544348494E47223B4C6F67676564496E7C623A313B);
+INSERT INTO `ak_data_system_log` VALUES ('97ikhgvatirbvppo9gttfubabuf245ui', '192.168.1.5', 1595383887, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333838373B);
+INSERT INTO `ak_data_system_log` VALUES ('9d04vgfp8tvui6c5kb73ugk97lhkmtu9', '192.168.1.5', 1595256563, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363536333B);
+INSERT INTO `ak_data_system_log` VALUES ('9dhphe0q9bl6ifpmn7ddn5m3eta69ssc', '192.168.1.5', 1595390691, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303639313B);
+INSERT INTO `ak_data_system_log` VALUES ('9egs1h194mcc1vufgit6gp2jvkeoc1p0', '192.168.1.5', 1595257421, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373432313B);
+INSERT INTO `ak_data_system_log` VALUES ('9gshor6tjaioc7fllaig7dqm3mq8tfkv', '192.168.1.5', 1595250228, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303232383B);
+INSERT INTO `ak_data_system_log` VALUES ('9kmr272alco4np93l125muaobn6rr649', '192.168.1.5', 1595254950, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235343935303B);
+INSERT INTO `ak_data_system_log` VALUES ('9lv9vq5f5d6c9lupg1938tfk0u222rof', '192.168.1.5', 1595251497, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313439373B);
+INSERT INTO `ak_data_system_log` VALUES ('9qv7ghv4rrh38knqdu8c3o9bvjaakilu', '192.168.1.5', 1595257125, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373132353B);
+INSERT INTO `ak_data_system_log` VALUES ('9ufqn76rgacpg7fi5omfa820fk5muae0', '192.168.1.5', 1595256979, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363937383B);
+INSERT INTO `ak_data_system_log` VALUES ('a47uhjicnlrr8t30fodk2976h814vvj9', '192.168.1.5', 1595251056, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313035363B);
+INSERT INTO `ak_data_system_log` VALUES ('ac9phs0tae9pp2ktd0gguqukpjces6bo', '192.168.1.5', 1595251061, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313036303B);
+INSERT INTO `ak_data_system_log` VALUES ('aeu539ii6udv0nfog2o546iut5ol50t3', '192.168.1.5', 1595248739, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383733393B);
+INSERT INTO `ak_data_system_log` VALUES ('ag9bcctkqu6ma1vun3e3j1rs9pveirnu', '192.168.1.5', 1595354406, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343430363B);
+INSERT INTO `ak_data_system_log` VALUES ('agge32ikphgmooe4sucg5kinneo5c02k', '192.168.1.5', 1595390705, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303730353B);
+INSERT INTO `ak_data_system_log` VALUES ('aj2iq1f7lftrgmgovvb4r3k4s7f0ovaj', '192.168.1.5', 1595357187, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373138373B);
+INSERT INTO `ak_data_system_log` VALUES ('ap2jpi1nsbjji2o2lg5bl6aher59ub9s', '192.168.1.5', 1595250681, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638313B);
+INSERT INTO `ak_data_system_log` VALUES ('as1ud6gmsoj8jmnq5l38defh7h3etdbe', '192.168.1.5', 1595250394, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303339343B);
+INSERT INTO `ak_data_system_log` VALUES ('as5jpbfsdotk24lbr8nv4s40f0mi5496', '192.168.1.5', 1595251476, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313437363B);
+INSERT INTO `ak_data_system_log` VALUES ('b1b6173mnmbmipcnkk6jvr9h0idue2ku', '192.168.1.5', 1595354546, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343534363B);
+INSERT INTO `ak_data_system_log` VALUES ('b1ct96cu0u4u178340qbcds96mpo70pi', '192.168.1.5', 1595356861, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363836313B);
+INSERT INTO `ak_data_system_log` VALUES ('b3fndlj71gbbah99nfekovh7t6snfq1t', '192.168.1.5', 1595383052, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333035323B);
+INSERT INTO `ak_data_system_log` VALUES ('b5ihcajhp0k50rh3lbvve58tfilc8hqs', '192.168.1.5', 1595248741, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383734313B);
+INSERT INTO `ak_data_system_log` VALUES ('b7d45tuad45hecunhr3j8mfoquh03hnm', '192.168.1.5', 1595389651, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393635313B);
+INSERT INTO `ak_data_system_log` VALUES ('b863barcpicp57pp2komnlrnuo0rfuue', '192.168.1.5', 1595251488, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313438383B);
+INSERT INTO `ak_data_system_log` VALUES ('ba4mvsottlv7tfaoo30e54hnd9ung5a8', '192.168.1.5', 1595355005, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353030353B);
+INSERT INTO `ak_data_system_log` VALUES ('bga29b8ucqk8c4bvpuo5c1h5r5i0vcq3', '192.168.1.5', 1595250501, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303530313B);
+INSERT INTO `ak_data_system_log` VALUES ('blb962m8865kcgh6h1bg5928bu8hlgmi', '192.168.1.5', 1595257402, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373430323B);
+INSERT INTO `ak_data_system_log` VALUES ('bndqsbgilmm0nq4e2h1lkjorq9a9ovi0', '192.168.1.5', 1595250694, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303639343B);
+INSERT INTO `ak_data_system_log` VALUES ('boir3e865a7tcvbe7rgevenkm0h263v6', '192.168.1.5', 1595250506, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303530363B);
+INSERT INTO `ak_data_system_log` VALUES ('bu8rrbdpj2o0dmi1akue9023dosp4pgs', '192.168.1.5', 1595250684, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638343B);
+INSERT INTO `ak_data_system_log` VALUES ('c48trsjqajutcph2rniuhu53l8d1gm2k', '192.168.1.5', 1595248290, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383239303B);
+INSERT INTO `ak_data_system_log` VALUES ('c4l53ekthvmgs6b92ssm8eqn6nvqev0c', '192.168.1.5', 1595251489, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313438393B);
+INSERT INTO `ak_data_system_log` VALUES ('c9vregvsfea4qk6ni5f6jvjfpgl8oarl', '192.168.1.5', 1595256873, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363837333B);
+INSERT INTO `ak_data_system_log` VALUES ('cbnmclt3a6pdq2qrspggjs4d5gnvnfu7', '192.168.1.5', 1595250694, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303639343B);
+INSERT INTO `ak_data_system_log` VALUES ('chrgiht1kq8ubt26p5cj2rfvsoob1jvq', '192.168.1.5', 1595251055, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313035353B);
+INSERT INTO `ak_data_system_log` VALUES ('ciuh8dkuhp0atdq64994ivrkk17bkenq', '192.168.1.5', 1595356850, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363835303B);
+INSERT INTO `ak_data_system_log` VALUES ('cksndggb8leq0426obpleqhu54b4qon1', '192.168.1.5', 1595251056, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313035363B);
+INSERT INTO `ak_data_system_log` VALUES ('clgjsk1veia7ensv0rcbngjisnlsg4fd', '192.168.1.5', 1595257971, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937313B);
+INSERT INTO `ak_data_system_log` VALUES ('cma2us3g6klcrhe102r3n2lua4c8ifas', '192.168.1.5', 1595357094, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373039343B);
+INSERT INTO `ak_data_system_log` VALUES ('cnj9d2avpm51839sjo4sosag2g87qddd', '192.168.1.5', 1595391668, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313636383B);
+INSERT INTO `ak_data_system_log` VALUES ('cobq4m98e4t1holbn0kc99l91rhfuatd', '192.168.1.5', 1595354385, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343338353B);
+INSERT INTO `ak_data_system_log` VALUES ('cqbsfkmr6rfbnbq1r4l5js02d9705j1h', '192.168.1.5', 1595251676, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313637363B);
+INSERT INTO `ak_data_system_log` VALUES ('ctak3g1qr8lfpm7kradvleetlur1q6rs', '::1', 1595257388, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373231363B);
+INSERT INTO `ak_data_system_log` VALUES ('ctg3nqbe1rk5cj932170ldlnamaa41l4', '192.168.1.5', 1595355233, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353233333B);
+INSERT INTO `ak_data_system_log` VALUES ('ctm5m151l8d5f5kamq0cpasdaig4qr33', '192.168.1.5', 1595248220, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383232303B);
+INSERT INTO `ak_data_system_log` VALUES ('cu6d5qukiq0r1na801d7g0ru2f18a2b7', '192.168.1.5', 1595355172, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353137323B);
+INSERT INTO `ak_data_system_log` VALUES ('cubl93qojrejg525tbmnjvq2m6h9eela', '192.168.1.5', 1595354767, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343736373B);
+INSERT INTO `ak_data_system_log` VALUES ('cuqgq2fmipe5j2fiv9k1h1gg1faf9tv8', '192.168.1.5', 1595257987, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938373B);
+INSERT INTO `ak_data_system_log` VALUES ('cvv6slvausn7f2a6b64oc0rceg2et06t', '192.168.1.5', 1595250682, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638323B);
+INSERT INTO `ak_data_system_log` VALUES ('d0174pclqctudcvki81bcdv378u2ohc4', '192.168.1.5', 1595256978, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363937383B);
+INSERT INTO `ak_data_system_log` VALUES ('d51mdk9d5uis9esq50mkvcsoij357cvb', '192.168.1.5', 1595383894, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333839343B);
+INSERT INTO `ak_data_system_log` VALUES ('d7f44qrg979b1tjoolrum56h128v88qv', '192.168.1.5', 1595383384, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333338343B);
+INSERT INTO `ak_data_system_log` VALUES ('da54spiljht6poorusqc21vfsi1j8dc0', '192.168.1.5', 1595247537, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373533373B);
+INSERT INTO `ak_data_system_log` VALUES ('dbk85qdqo5mfn28cn29nt5cqp1nr9gon', '192.168.1.5', 1595390054, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303035333B);
+INSERT INTO `ak_data_system_log` VALUES ('dbosq8uuqa4d248a5hlrco0gtkb55fif', '192.168.1.5', 1595251284, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313238343B);
+INSERT INTO `ak_data_system_log` VALUES ('de5sf787amun8co7gof2hmc7t31r8m1k', '192.168.1.5', 1595257968, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373936383B);
+INSERT INTO `ak_data_system_log` VALUES ('deqfda915b0uk13sgmsrtlfr65gs736d', '192.168.1.5', 1595251496, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313439363B);
+INSERT INTO `ak_data_system_log` VALUES ('dhvrunnggu5s2gvv5t196pu9248mremd', '192.168.1.5', 1595391710, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313539373B);
+INSERT INTO `ak_data_system_log` VALUES ('djppcqsfjaqcp2pk7qmmi5dcqq55ceu6', '192.168.1.5', 1595257983, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938333B);
+INSERT INTO `ak_data_system_log` VALUES ('dl8ed0otqh9fcutk8d10kj5obpm497mk', '192.168.1.5', 1595250598, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303539383B);
+INSERT INTO `ak_data_system_log` VALUES ('doca1sjn9g76bic7r5kma523ib7bgc7s', '192.168.1.5', 1595389649, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393634393B);
+INSERT INTO `ak_data_system_log` VALUES ('domonim13pfpi7gs8htarc2i0n01p2pc', '192.168.1.5', 1595383400, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333430303B);
+INSERT INTO `ak_data_system_log` VALUES ('e30phfq67uhqsh6oq9edid6j3d1dd6lu', '192.168.1.5', 1595391657, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313635373B);
+INSERT INTO `ak_data_system_log` VALUES ('e32791dcvv5e3cj63qtsv7mb9jvtjh4n', '192.168.1.5', 1595251268, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313236383B);
+INSERT INTO `ak_data_system_log` VALUES ('e49q992lbfcgog9insiq66jc2u4suqjr', '192.168.1.5', 1595248222, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383232323B);
+INSERT INTO `ak_data_system_log` VALUES ('e4ctt6govnth8k6s1qlejgnn900rl7ms', '192.168.1.5', 1595247533, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373533333B);
+INSERT INTO `ak_data_system_log` VALUES ('eb7g80ntph3fgc83tc70vcqq9999tjq0', '192.168.1.5', 1595355044, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353034343B);
+INSERT INTO `ak_data_system_log` VALUES ('ees3orjj859o2a5sl0tbvaetkeamc7t8', '192.168.1.5', 1595354699, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343639393B);
+INSERT INTO `ak_data_system_log` VALUES ('eibus8igp5bs4pgc1g6crj02pko19l6i', '192.168.1.5', 1595250394, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303339343B);
+INSERT INTO `ak_data_system_log` VALUES ('emilv273b3v74qol7gr3rfqo79pn1fis', '192.168.1.5', 1595390630, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303633303B);
+INSERT INTO `ak_data_system_log` VALUES ('eo11k3dpolmp6rlmk191djppkq6f0bd6', '192.168.1.5', 1595391658, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313635383B);
+INSERT INTO `ak_data_system_log` VALUES ('epbdrov8c2v0r2b35l568uapt30r6r7a', '192.168.1.5', 1595383039, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333033393B);
+INSERT INTO `ak_data_system_log` VALUES ('f123tbjluhj4r92hm4skpekigni62qas', '192.168.1.5', 1595251266, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313236363B);
+INSERT INTO `ak_data_system_log` VALUES ('f2ng4ci7fm03vmrlr0gbeblkkhpmn9a6', '192.168.1.5', 1595256983, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363938333B);
+INSERT INTO `ak_data_system_log` VALUES ('f39iaja6f0d66dgn94230qk76chkr7b0', '192.168.1.5', 1595391575, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313537353B);
+INSERT INTO `ak_data_system_log` VALUES ('f4s701roog3ujs5mq5k874tf3e95ms2e', '192.168.1.5', 1595383385, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333338353B);
+INSERT INTO `ak_data_system_log` VALUES ('f5n26id3qi13i9n1qjcjtkrc2nqgs7c3', '192.168.1.5', 1595257974, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937343B);
+INSERT INTO `ak_data_system_log` VALUES ('f9irpi0nk1cr2hsjesbni3pb2bh5m992', '192.168.1.5', 1595256879, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363837393B);
+INSERT INTO `ak_data_system_log` VALUES ('fbctul96kobh0quf26m0mlhg1iqvsn4m', '192.168.1.5', 1595256564, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363536343B);
+INSERT INTO `ak_data_system_log` VALUES ('ff0rf4scvt0nrlm09rutlomuj3i1s84v', '192.168.1.5', 1595247676, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637363B);
+INSERT INTO `ak_data_system_log` VALUES ('fg4jci6rvhqj0ph4hqij3b872skg8d8e', '192.168.1.5', 1595256972, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363937323B);
+INSERT INTO `ak_data_system_log` VALUES ('fknmbvb4vckpqri96t913h546qdde883', '192.168.1.5', 1595257988, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938383B);
+INSERT INTO `ak_data_system_log` VALUES ('fl3fhdofplqd243gq6hj1jpj3t2pkp7p', '192.168.1.5', 1595256998, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363939383B);
+INSERT INTO `ak_data_system_log` VALUES ('fska11edi9bbpvu714ukqladqk80gk96', '192.168.1.5', 1595355340, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353334303B);
+INSERT INTO `ak_data_system_log` VALUES ('fuqc9rct23e3ee8m0a7h69c43jagnne2', '192.168.1.5', 1595383404, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333430343B);
+INSERT INTO `ak_data_system_log` VALUES ('fv03omo4mq1t896megur42vt885ekj14', '192.168.1.5', 1595257427, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373432373B);
+INSERT INTO `ak_data_system_log` VALUES ('g8ekepdcnljcs2gvlarb6kkk11h8q1v6', '192.168.1.5', 1595248742, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383734323B);
+INSERT INTO `ak_data_system_log` VALUES ('gc0u14t8na2cqpo52eiam6p95sglbfn5', '192.168.1.5', 1595383038, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333033383B);
+INSERT INTO `ak_data_system_log` VALUES ('gcad6k1st7vr98abaa4aaler6t3h7jkv', '192.168.1.5', 1595354677, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343637363B);
+INSERT INTO `ak_data_system_log` VALUES ('gd3d7vjuc9v3dqvvq81khl2otc8i0sjh', '192.168.1.5', 1595391632, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313633323B);
+INSERT INTO `ak_data_system_log` VALUES ('gf37cj0ltdabdbb2togpu7743j19paga', '192.168.1.5', 1595383390, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333339303B);
+INSERT INTO `ak_data_system_log` VALUES ('gfmvi2v92t1bm68f9tsg85a78svi1bm9', '::1', 1595307207, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353330373230373B69647C733A313A2232223B6B6F64657C733A31333A225553522F303232302F30303032223B6E616D617C733A353A2241646D696E223B6C6576656C7C733A353A2241646D696E223B417070496E666F7C733A32303A2253504B2050524F46494C45204D41544348494E47223B4C6F67676564496E7C623A313B);
+INSERT INTO `ak_data_system_log` VALUES ('gg39qcbgqp087jilvrk674s2rc5u1cme', '192.168.1.5', 1595354544, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343534343B);
+INSERT INTO `ak_data_system_log` VALUES ('gh1la173v5tcm7rkveajqjm3ctm8ba57', '192.168.1.5', 1595256991, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363939313B);
+INSERT INTO `ak_data_system_log` VALUES ('ghiki9p70c93ps4iseugin06ftel1ppc', '192.168.1.5', 1595354535, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343533353B);
+INSERT INTO `ak_data_system_log` VALUES ('gl1ke038i6uf4qktdqos3n08esm6udm0', '192.168.1.5', 1595248858, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383835383B);
+INSERT INTO `ak_data_system_log` VALUES ('glekn1j8k2b8nroi9ssq8ui1e6e95pmp', '192.168.1.5', 1595257990, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373939303B);
+INSERT INTO `ak_data_system_log` VALUES ('goc7l5r0munjeurelml8u85tha16a4uu', '192.168.1.5', 1595256599, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363539393B);
+INSERT INTO `ak_data_system_log` VALUES ('gpumfoflvbtftihqi28qtug672b7ub6h', '192.168.1.5', 1595247532, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373533323B);
+INSERT INTO `ak_data_system_log` VALUES ('gqbo96eb5ftrvdanbbet7i7qp0f4ehqg', '192.168.1.5', 1595354357, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343335373B);
+INSERT INTO `ak_data_system_log` VALUES ('gu3rp2c4v0c7ulm1grfd3psk5488789e', '192.168.1.5', 1595356854, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363835333B);
+INSERT INTO `ak_data_system_log` VALUES ('gue6lgf0kecd0gcatja5vkls50i24j2t', '192.168.1.5', 1595254932, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235343933323B);
+INSERT INTO `ak_data_system_log` VALUES ('h2f8kac52jqqk38oifr0p7l8q6imhklh', '192.168.1.5', 1595250592, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303539323B);
+INSERT INTO `ak_data_system_log` VALUES ('h34fqutskh0h3li31mt9p4ea2ev7papp', '::1', 1595256660, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363534323B69647C733A313A2232223B6B6F64657C733A31333A225553522F303232302F30303032223B6E616D617C733A353A2241646D696E223B6C6576656C7C733A353A2241646D696E223B417070496E666F7C733A32303A2253504B2050524F46494C45204D41544348494E47223B4C6F67676564496E7C623A313B);
+INSERT INTO `ak_data_system_log` VALUES ('h8kg5qhgrjinub6anl9q7pjpkuq6ffem', '192.168.1.5', 1595356869, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363836393B);
+INSERT INTO `ak_data_system_log` VALUES ('helkcnhqe7dn192kia63lkeif5tn82lb', '192.168.1.5', 1595355047, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353034373B);
+INSERT INTO `ak_data_system_log` VALUES ('hi2jtq7p603puek90a0k8qedkvt714qa', '192.168.1.5', 1595357191, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373139313B);
+INSERT INTO `ak_data_system_log` VALUES ('hi72jc5sbgqvc7b215qqdc32n80fok4u', '192.168.1.5', 1595383382, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333338323B);
+INSERT INTO `ak_data_system_log` VALUES ('hmv5usqspq2rjvog9225fb71bac1lu3n', '192.168.1.5', 1595389645, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393634353B);
+INSERT INTO `ak_data_system_log` VALUES ('hrqub1d88q932o27rggf6s66lg6p1k0e', '192.168.1.5', 1595355258, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353235383B);
+INSERT INTO `ak_data_system_log` VALUES ('i0f1rn50nkkb6cr4bm4h6pouqbek8pgr', '192.168.1.5', 1595354350, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343335303B);
+INSERT INTO `ak_data_system_log` VALUES ('i4scno7rkjnvo3h39a0caf6uicajeaff', '192.168.1.5', 1595256770, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363737303B);
+INSERT INTO `ak_data_system_log` VALUES ('i9kn28vhbk8kln2pg1fp5kqf4uvf9un7', '192.168.1.5', 1595257983, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938333B);
+INSERT INTO `ak_data_system_log` VALUES ('i9le8ikrm6tdnjibpu9e99lcba7lrc1v', '192.168.1.5', 1595250285, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303238353B);
+INSERT INTO `ak_data_system_log` VALUES ('imveehhnkq4ra2hu1fj1idgmhc6kpiea', '192.168.1.5', 1595256535, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363533343B);
+INSERT INTO `ak_data_system_log` VALUES ('it9u1gd0cr85terrt3feu3kjsoce714q', '192.168.1.5', 1595248742, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383734323B);
+INSERT INTO `ak_data_system_log` VALUES ('ium672dh38559ctvqiprcqq0q32e0ikv', '192.168.1.5', 1595390900, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303930303B);
+INSERT INTO `ak_data_system_log` VALUES ('j14s9sqjq6t1kbqbsrlnaim3dv6b48lf', '192.168.1.5', 1595250682, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638323B);
+INSERT INTO `ak_data_system_log` VALUES ('j22asatiaa95vtq72bv16pre9cvj4bml', '192.168.1.5', 1595391674, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313637343B);
+INSERT INTO `ak_data_system_log` VALUES ('j2mlhcgh3o9j5k7f82nomr8to2n8jlsj', '192.168.1.5', 1595354940, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343934303B);
+INSERT INTO `ak_data_system_log` VALUES ('j2t32lm3pqem4tvqletu4u3vgp97h30j', '192.168.1.5', 1595355211, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353231313B);
+INSERT INTO `ak_data_system_log` VALUES ('j5rgon1t6kh892s9c852bf5ebrsn2jm1', '192.168.1.5', 1595357189, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373138393B);
+INSERT INTO `ak_data_system_log` VALUES ('j811q0d23fvmcm5c3b6925g2snmmd77i', '192.168.1.5', 1595355336, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353333363B);
+INSERT INTO `ak_data_system_log` VALUES ('jb63snhk4nq7mh89bnfj6aqt8mvltb3l', '192.168.1.5', 1595354500, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343530303B);
+INSERT INTO `ak_data_system_log` VALUES ('jbsu18cnqjbpscmtv51l8pud371s48bm', '192.168.1.5', 1595354337, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343333373B);
+INSERT INTO `ak_data_system_log` VALUES ('jfjdglqvphs0fr6iarr2mv00kpk40tqu', '192.168.1.5', 1595256521, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363532313B);
+INSERT INTO `ak_data_system_log` VALUES ('jgth2cj0c27efb6e86dbam017fdutroo', '192.168.1.5', 1595354538, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343533383B);
+INSERT INTO `ak_data_system_log` VALUES ('jh549r89s3hnshtc4tvg06vlg5c94i0g', '192.168.1.5', 1595354963, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343936333B);
+INSERT INTO `ak_data_system_log` VALUES ('jhgg45jqq050tkoottgurkip629lto18', '192.168.1.5', 1595355213, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353231333B);
+INSERT INTO `ak_data_system_log` VALUES ('jhiupvp4qthdt118nmi2dkuhvppcgqa2', '192.168.1.5', 1595256967, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363936373B);
+INSERT INTO `ak_data_system_log` VALUES ('jqohp8g1kbsvp11u2cafamvppb8robmi', '192.168.1.5', 1595383391, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333339313B);
+INSERT INTO `ak_data_system_log` VALUES ('jr958ccsk34f6k8fn0dp6ajgdtaq4it5', '192.168.1.5', 1595257405, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373430353B);
+INSERT INTO `ak_data_system_log` VALUES ('js9a75finjige1m1emj3alu4atjuotbn', '192.168.1.5', 1595247674, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637343B);
+INSERT INTO `ak_data_system_log` VALUES ('jtdhcbdlepjvtjggqkusdjlnlv7fn1e8', '192.168.1.5', 1595251061, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313036313B);
+INSERT INTO `ak_data_system_log` VALUES ('jv6sddg9go7nfmldtt8vmhcdb2il9q1c', '192.168.1.5', 1595257496, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373439363B);
+INSERT INTO `ak_data_system_log` VALUES ('k04c2qbn7rnr65nvqk6m770m7r56sin3', '192.168.1.5', 1595355271, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353237313B);
+INSERT INTO `ak_data_system_log` VALUES ('k0npq59jl8fgbmm0u8mll7pbdvm2krs2', '192.168.1.5', 1595250694, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303639343B);
+INSERT INTO `ak_data_system_log` VALUES ('k25p09g1mbtmuucsii0j2pcc5i1gielu', '192.168.1.5', 1595390422, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303432323B);
+INSERT INTO `ak_data_system_log` VALUES ('k56jm685pogpo0f4aejkhu7rsi58vno0', '192.168.1.5', 1595383403, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333430333B);
+INSERT INTO `ak_data_system_log` VALUES ('k7f6hkq7vaksbd60fta113nl91l4un80', '192.168.1.5', 1595247537, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373533373B);
+INSERT INTO `ak_data_system_log` VALUES ('k899t149hffrjt5ulaklta2pjefk1ven', '192.168.1.5', 1595355099, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353039393B);
+INSERT INTO `ak_data_system_log` VALUES ('k9gsjj656cab8945mgvckpmg73gr10kd', '192.168.1.5', 1595383397, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333339373B);
+INSERT INTO `ak_data_system_log` VALUES ('ka8f6hidoo2eq8oah02s10aq5c514fr7', '192.168.1.5', 1595251489, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313438393B);
+INSERT INTO `ak_data_system_log` VALUES ('kc7nkkgagobk816uvu9ogfdd2aqqm5p8', '192.168.1.5', 1595357096, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373039363B);
+INSERT INTO `ak_data_system_log` VALUES ('kd6jopevlvu6dmvuc9r1caju67gnvju2', '192.168.1.5', 1595389659, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393635393B);
+INSERT INTO `ak_data_system_log` VALUES ('kdcrla55laemhj6v60rg2h5vqtu5gpso', '192.168.1.5', 1595250284, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303238343B);
+INSERT INTO `ak_data_system_log` VALUES ('kep73beikkd2abbdr41tv666k1m9006r', '192.168.1.5', 1595383054, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333035343B);
+INSERT INTO `ak_data_system_log` VALUES ('kesr494gnih4dtl79p6gbo58p0p3ec4g', '192.168.1.5', 1595355003, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353030333B);
+INSERT INTO `ak_data_system_log` VALUES ('kit4ucu07qt3nnvie160hu17ec6u1tl8', '192.168.1.5', 1595257117, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373131373B);
+INSERT INTO `ak_data_system_log` VALUES ('kj7mvrvj4kbpk3mopb6o9b8vmqk2igsi', '192.168.1.5', 1595250429, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303432393B);
+INSERT INTO `ak_data_system_log` VALUES ('kke81elh1rhrtsp8c5spprdkmfclej7s', '192.168.1.5', 1595250547, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534373B);
+INSERT INTO `ak_data_system_log` VALUES ('koo18bt4c8gm2hjsjq8stpa9m2qht7ia', '192.168.1.5', 1595354781, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343738313B);
+INSERT INTO `ak_data_system_log` VALUES ('ks49ie1fks47naj84bbj5omhevc98rum', '192.168.1.5', 1595257522, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373532323B);
+INSERT INTO `ak_data_system_log` VALUES ('kshaele2mfe9f2g9ruvnugbrrkvs7kui', '192.168.1.5', 1595256834, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363833343B);
+INSERT INTO `ak_data_system_log` VALUES ('kv6821hfticrvft8be8g751o97rtihct', '192.168.1.5', 1595251027, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313032373B);
+INSERT INTO `ak_data_system_log` VALUES ('kvelho0a8sfooj4ddjb7oj0cgam8tgl4', '192.168.1.5', 1595256869, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363836393B);
+INSERT INTO `ak_data_system_log` VALUES ('kvftbtq0pokvs6aaiosp98hffl9o8f3o', '192.168.1.5', 1595355273, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353237333B);
+INSERT INTO `ak_data_system_log` VALUES ('l3nunnkjb49aqs62irsoattk88is4dnl', '192.168.1.5', 1595247532, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373533323B);
+INSERT INTO `ak_data_system_log` VALUES ('l4sm4kjb2emvteumkp6432ah4o9tidr7', '192.168.1.5', 1595354372, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343337323B);
+INSERT INTO `ak_data_system_log` VALUES ('l5fug08n3p9rl8eep2iv2rc09ifqg141', '192.168.1.5', 1595257977, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937373B);
+INSERT INTO `ak_data_system_log` VALUES ('l5o4vc7u61873637pfcuqso5t6qrt1h3', '192.168.1.5', 1595251503, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313530333B);
+INSERT INTO `ak_data_system_log` VALUES ('l77ehuivcljj75bpv175krmtr3rcffjt', '192.168.1.5', 1595256381, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363338313B);
+INSERT INTO `ak_data_system_log` VALUES ('l8ruuter7m97cii90g55pk46c75qlgjl', '192.168.1.5', 1595251694, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313639343B);
+INSERT INTO `ak_data_system_log` VALUES ('lae31a1hl8deu9m4no88urj489vq2935', '192.168.1.5', 1595354350, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343335303B);
+INSERT INTO `ak_data_system_log` VALUES ('lb0dmftoottq0297oflgee7ihed1eb9k', '192.168.1.5', 1595257977, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937373B);
+INSERT INTO `ak_data_system_log` VALUES ('le121vmd14afd0f26n804feaamjiaa4g', '192.168.1.5', 1595382971, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338323937313B);
+INSERT INTO `ak_data_system_log` VALUES ('le35l7geqg2cmpaf357vg62c972dfvpi', '192.168.1.5', 1595250540, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534303B);
+INSERT INTO `ak_data_system_log` VALUES ('lhfsgodj94mcqembr77gipk3382ev868', '192.168.1.5', 1595248219, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383231393B);
+INSERT INTO `ak_data_system_log` VALUES ('ll19s4cb6urrl4ghn2sjjh5790mjmeir', '192.168.1.5', 1595251479, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313437393B);
+INSERT INTO `ak_data_system_log` VALUES ('lm69ucqh70kcb605sds858nmig37560d', '192.168.1.5', 1595356852, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363835323B);
+INSERT INTO `ak_data_system_log` VALUES ('loj8tqe1rp6gn30t578qb2ru7nmb5j2n', '192.168.1.5', 1595355214, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353231343B);
+INSERT INTO `ak_data_system_log` VALUES ('lopqlnkmf9f8cji95460drt1v4e1lbo2', '192.168.1.5', 1595251479, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313437393B);
+INSERT INTO `ak_data_system_log` VALUES ('lt7d6kp0tjgofb350j877po0hdad2pja', '192.168.1.5', 1595384017, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338343031373B);
+INSERT INTO `ak_data_system_log` VALUES ('ltas01ovdiijjba7h93s1bgi1lbm3ruq', '192.168.1.5', 1595256874, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363837343B);
+INSERT INTO `ak_data_system_log` VALUES ('luut389bphveqjguon4s8gb3ibgbpbcu', '192.168.1.5', 1595391674, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313637343B);
+INSERT INTO `ak_data_system_log` VALUES ('m08hk1uhh7tnucgvtra5dtlog5jvf7ib', '192.168.1.5', 1595251290, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313239303B);
+INSERT INTO `ak_data_system_log` VALUES ('m0dqn32kgulq8o8vpj4misibihfsi8l8', '192.168.1.5', 1595354962, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343936323B);
+INSERT INTO `ak_data_system_log` VALUES ('m0j7t61t1erc6ptmt1eklslh0mvudvst', '192.168.1.5', 1595251019, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313031393B);
+INSERT INTO `ak_data_system_log` VALUES ('m0npc7oafuudc26kc8seso9q4aba650d', '192.168.1.5', 1595391672, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313637323B);
+INSERT INTO `ak_data_system_log` VALUES ('m2u9c1vtillv34drq7v2ob9cn1a60hpc', '192.168.1.5', 1595251290, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313239303B);
+INSERT INTO `ak_data_system_log` VALUES ('m3k4db1jlf53t9fkupqles3fgff2kmbd', '192.168.1.5', 1595389657, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393635373B);
+INSERT INTO `ak_data_system_log` VALUES ('m7nkp4bj1ul2ls8fsgu4cjhaen80q533', '192.168.1.5', 1595251674, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313637343B);
+INSERT INTO `ak_data_system_log` VALUES ('m7qjj9u8h9cumkno4ju19k45lkl22deq', '192.168.1.5', 1595247674, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637343B);
+INSERT INTO `ak_data_system_log` VALUES ('m87go7bne7i8jhr7kg04tg59ne8oa8n7', '192.168.1.5', 1595257017, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373031373B);
+INSERT INTO `ak_data_system_log` VALUES ('mbakit12of3qejj8igs97srvbpabu7tj', '192.168.1.5', 1595250500, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303530303B);
+INSERT INTO `ak_data_system_log` VALUES ('mgapipesh89r2vn1f7ken4b48i29ngdl', '192.168.1.5', 1595250506, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303530363B);
+INSERT INTO `ak_data_system_log` VALUES ('mipts5r7qqn6vubop2psvv20tvo8s6e0', '192.168.1.5', 1595354370, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343337303B);
+INSERT INTO `ak_data_system_log` VALUES ('mkuj92gribkqb4h49pvbk707kbrvfcr6', '192.168.1.5', 1595382974, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338323937343B);
+INSERT INTO `ak_data_system_log` VALUES ('mnjs9s24qc4sbr215mjavhvmfer6m3kh', '192.168.1.5', 1595257421, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373432313B);
+INSERT INTO `ak_data_system_log` VALUES ('mokbrcnqg9rmbdnmd2vsriongcaencda', '192.168.1.5', 1595355169, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353136393B);
+INSERT INTO `ak_data_system_log` VALUES ('mpd8pkjos46dnsfedbt4us3n9fsruiln', '192.168.1.5', 1595251225, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313232353B);
+INSERT INTO `ak_data_system_log` VALUES ('mqfvafnunkj1c2jjfr5l75lnsjfmiapt', '::1', 1595356836, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363833333B69647C733A313A2232223B6B6F64657C733A31333A225553522F303232302F30303032223B6E616D617C733A353A2241646D696E223B6C6576656C7C733A353A2241646D696E223B417070496E666F7C733A32303A2253504B2050524F46494C45204D41544348494E47223B4C6F67676564496E7C623A313B);
+INSERT INTO `ak_data_system_log` VALUES ('mupl34t8pgv92ig8bluts084d30fhjee', '192.168.1.5', 1595251055, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313035353B);
+INSERT INTO `ak_data_system_log` VALUES ('mv1kljbv579cj2iehe5hjobin73rm5tt', '192.168.1.5', 1595250598, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303539383B);
+INSERT INTO `ak_data_system_log` VALUES ('mv1ogekuv0037fh4q6lt2vh9tve19ri8', '192.168.1.5', 1595250689, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638393B);
+INSERT INTO `ak_data_system_log` VALUES ('mvj7qqml90ok4j5hs119178l7tqq6fpk', '192.168.1.5', 1595251054, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313035343B);
+INSERT INTO `ak_data_system_log` VALUES ('n0k41s25njkl9u67m9bcjkqug8ui2lhs', '192.168.1.5', 1595256870, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363837303B);
+INSERT INTO `ak_data_system_log` VALUES ('n31mbt5dlb9k3ivpo1ga00hmp9pg0e1k', '192.168.1.5', 1595248827, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383832373B);
+INSERT INTO `ak_data_system_log` VALUES ('n4o4ft1na7mnp9ldhhhbokhgt2cbagj7', '192.168.1.5', 1595354697, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343639373B);
+INSERT INTO `ak_data_system_log` VALUES ('n5qlf8ucoro9v06414e1iiujc9n5vntt', '192.168.1.5', 1595251290, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313239303B);
+INSERT INTO `ak_data_system_log` VALUES ('n8kk3jb9i3gfm7cu8goqtql426ebobaq', '::1', 1595515173, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353531353031393B69647C733A313A2232223B6B6F64657C733A31333A225553522F303232302F30303032223B6E616D617C733A353A2241646D696E223B6C6576656C7C733A353A2241646D696E223B417070496E666F7C733A32303A2253504B2050524F46494C45204D41544348494E47223B4C6F67676564496E7C623A313B);
+INSERT INTO `ak_data_system_log` VALUES ('n8kn2mvdpvqph0mb3itjr455vg92nvlr', '192.168.1.5', 1595356867, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363836373B);
+INSERT INTO `ak_data_system_log` VALUES ('ncfi64jub6194t6rc73t4nr6rua253ig', '192.168.1.5', 1595391661, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313636313B);
+INSERT INTO `ak_data_system_log` VALUES ('ncoo2ripb4bod9pls1u5o6fs34na24qf', '192.168.1.5', 1595247432, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373433323B);
+INSERT INTO `ak_data_system_log` VALUES ('ndafmq7g9aqjj8otkgcabjpn0e5fjmt5', '192.168.1.5', 1595257979, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937393B);
+INSERT INTO `ak_data_system_log` VALUES ('ngd0hcqglipdpp3f79l4uedne6q5qcqe', '192.168.1.5', 1595355274, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353237333B);
+INSERT INTO `ak_data_system_log` VALUES ('nkjbj6qh66hlaq8lkv2932k7m1o76q0p', '192.168.1.5', 1595390692, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303639323B);
+INSERT INTO `ak_data_system_log` VALUES ('nm5e9k6igtarhre3jr2kgo5k01uau8pf', '192.168.1.5', 1595248291, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383239313B);
+INSERT INTO `ak_data_system_log` VALUES ('nqtbeo112l4fbdj1g56k57qukubbbe2n', '192.168.1.5', 1595256781, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363738313B);
+INSERT INTO `ak_data_system_log` VALUES ('nt5qt6c8hcui400joh1l0qsthqktcvps', '192.168.1.5', 1595248742, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383734323B);
+INSERT INTO `ak_data_system_log` VALUES ('nt84skoegr68nkj7o02cpbro2f09s7vr', '192.168.1.5', 1595383403, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333430333B);
+INSERT INTO `ak_data_system_log` VALUES ('o04duesfp8bjkb1f9efoc71pk9upvm8o', '192.168.1.5', 1595256321, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363332313B);
+INSERT INTO `ak_data_system_log` VALUES ('o43lp1dmhp2u6ilksge2rb5v849lobjv', '192.168.1.5', 1595257986, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938363B);
+INSERT INTO `ak_data_system_log` VALUES ('o6lm3vid0v2hth1s5dbqdqi4mvrr5trj', '192.168.1.5', 1595250598, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303539383B);
+INSERT INTO `ak_data_system_log` VALUES ('o7u2jejgvqs5s5r63j5f1pha66qiicml', '192.168.1.5', 1595354498, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343439383B);
+INSERT INTO `ak_data_system_log` VALUES ('o9inlbcsjf5ujdsk63g7ka6hm8ug469k', '192.168.1.5', 1595391708, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313730383B);
+INSERT INTO `ak_data_system_log` VALUES ('ocm1q1dmbd40j5tn44v7u0mmqtt7cmcp', '192.168.1.5', 1595247675, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637353B);
+INSERT INTO `ak_data_system_log` VALUES ('oehc7q5hgd502691le32mtdis2sj24or', '192.168.1.5', 1595250225, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303232353B);
+INSERT INTO `ak_data_system_log` VALUES ('of60lj98e5qso4gbin8bd661eov7fjeu', '192.168.1.5', 1595389656, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393635363B);
+INSERT INTO `ak_data_system_log` VALUES ('oghvfo9mgtjmb8lgceu9ghh2uhkm997o', '192.168.1.5', 1595250540, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534303B);
+INSERT INTO `ak_data_system_log` VALUES ('ohs02p2fvvq50eqf9gl3apotrj9aibl7', '192.168.1.5', 1595354396, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343339363B);
+INSERT INTO `ak_data_system_log` VALUES ('ombng39jdclsat3ibg0uu12c0efffen9', '192.168.1.5', 1595390674, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303637343B);
+INSERT INTO `ak_data_system_log` VALUES ('omh89ccum7j3nl5t6hdrj5dpuu0tlviq', '192.168.1.5', 1595382970, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338323936393B);
+INSERT INTO `ak_data_system_log` VALUES ('ont153dfg1q25c84j9ukenaabbhmsbsc', '192.168.1.5', 1595355132, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353133323B);
+INSERT INTO `ak_data_system_log` VALUES ('oo7estmobbkap6e10tggnr5ihd68uo83', '192.168.1.5', 1595256767, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363736373B);
+INSERT INTO `ak_data_system_log` VALUES ('ooqac8kj9mc0q08dv28kb8ji024j9eik', '192.168.1.5', 1595355144, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353134343B);
+INSERT INTO `ak_data_system_log` VALUES ('oovn940immn12qqlpbrt2vof3dicqukd', '192.168.1.5', 1595389521, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393532313B);
+INSERT INTO `ak_data_system_log` VALUES ('orev62i8jc5m0tln9u7keoufaamaqmmt', '192.168.1.5', 1595257966, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373936363B);
+INSERT INTO `ak_data_system_log` VALUES ('ovpq3ggmidb42cc9tb1hf28cc2i8iuig', '192.168.1.5', 1595250681, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303638313B);
+INSERT INTO `ak_data_system_log` VALUES ('p0aq8ifs0o680pmlfg9do2slntlqd9od', '192.168.1.5', 1595383889, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333838393B);
+INSERT INTO `ak_data_system_log` VALUES ('p0n4gp2qv1ttmfvpld9ipua4vctr875i', '192.168.1.5', 1595247434, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373433343B);
+INSERT INTO `ak_data_system_log` VALUES ('p410375ktbriir1sqrsbqernfal9jr46', '192.168.1.5', 1595357194, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373139343B);
+INSERT INTO `ak_data_system_log` VALUES ('p48v5mt3f2gmhm1cf6889a349kr84s7h', '192.168.1.5', 1595251503, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313530333B);
+INSERT INTO `ak_data_system_log` VALUES ('pat1d39p3p970dd2k901jt6ipimj961g', '192.168.1.5', 1595250232, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303233323B);
+INSERT INTO `ak_data_system_log` VALUES ('pavjs2pa5l00lqc3t178lup8u12asp7g', '::1', 1595392798, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339323739383B69647C733A313A2232223B6B6F64657C733A31333A225553522F303232302F30303032223B6E616D617C733A353A2241646D696E223B6C6576656C7C733A353A2241646D696E223B417070496E666F7C733A32303A2253504B2050524F46494C45204D41544348494E47223B4C6F67676564496E7C623A313B);
+INSERT INTO `ak_data_system_log` VALUES ('pdag19kgdjm5lhqeh2h1avolbmlv08uo', '192.168.1.5', 1595250429, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303432393B);
+INSERT INTO `ak_data_system_log` VALUES ('pe9a06jao3l4bmpci44eq3hlg4htgq0d', '192.168.1.5', 1595251234, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313233343B);
+INSERT INTO `ak_data_system_log` VALUES ('pf4er8l5cht63nbs83vcvb10cc2oi336', '192.168.1.5', 1595355047, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353034373B);
+INSERT INTO `ak_data_system_log` VALUES ('pgan3pd4kqi6ic2dfm5nmmbcpvnk1vsl', '192.168.1.5', 1595256758, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363735383B);
+INSERT INTO `ak_data_system_log` VALUES ('pgpvcek0ebc0rhlfb6mts6mom55s2lru', '192.168.1.5', 1595248291, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383239313B);
+INSERT INTO `ak_data_system_log` VALUES ('pjda29o54gsjmt4litm3sbcab3sfh9sf', '192.168.1.5', 1595251476, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313437363B);
+INSERT INTO `ak_data_system_log` VALUES ('plmjdvp6kv0fptbp1k0g5eq6gfo0tvn7', '192.168.1.5', 1595383054, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333035343B);
+INSERT INTO `ak_data_system_log` VALUES ('pnrqgns2m9hfvpsh2lsdcnomd62s93a0', '192.168.1.5', 1595355326, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353332363B);
+INSERT INTO `ak_data_system_log` VALUES ('pnuit1dv98d84kpq3kq0dj5rm0gkjnae', '192.168.1.5', 1595357086, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373038363B);
+INSERT INTO `ak_data_system_log` VALUES ('prlm18gqdgaci47s468j17lvd87323pk', '192.168.1.5', 1595382976, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338323937363B);
+INSERT INTO `ak_data_system_log` VALUES ('pssrogj6po7mqi6mgbl87gcug225ni8r', '192.168.1.5', 1595256983, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363938333B);
+INSERT INTO `ak_data_system_log` VALUES ('pt5b04gpqlfq5p4d1bipmsmvlkqhvnua', '192.168.1.5', 1595355129, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353132393B);
+INSERT INTO `ak_data_system_log` VALUES ('q38veilllts1r3ch99g2neaj5bd6s0tm', '192.168.1.5', 1595355102, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353130323B);
+INSERT INTO `ak_data_system_log` VALUES ('q3nhcgnp38f576110f69c2qovnd37fag', '192.168.1.5', 1595250232, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303233323B);
+INSERT INTO `ak_data_system_log` VALUES ('q5lttnpt2t2oh2sk48bjaigq1ol291fh', '192.168.1.5', 1595390669, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303636393B);
+INSERT INTO `ak_data_system_log` VALUES ('qcalenefakvrd8frp0muvdemadflptha', '192.168.1.5', 1595355278, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353237383B);
+INSERT INTO `ak_data_system_log` VALUES ('qdomno9eu6urhsbei5cqh8ikv0dfsu4a', '192.168.1.5', 1595257518, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373531383B);
+INSERT INTO `ak_data_system_log` VALUES ('qh5lo6ncmucmcov1tulc43658216nrga', '192.168.1.5', 1595257118, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373131383B);
+INSERT INTO `ak_data_system_log` VALUES ('qhddh68dqrejb912g5gj40sug5v1apn0', '192.168.1.5', 1595251275, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313237353B);
+INSERT INTO `ak_data_system_log` VALUES ('qi0o3num00msgs81q3ob6se1r1ak3rkq', '192.168.1.5', 1595383389, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333338393B);
+INSERT INTO `ak_data_system_log` VALUES ('qk0h480aebsjlurpth2jis7a46mg46fo', '192.168.1.5', 1595251644, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313634343B);
+INSERT INTO `ak_data_system_log` VALUES ('qkb71iblh1b500n4b9htc9f04tgq4ubk', '192.168.1.5', 1595251275, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313237353B);
+INSERT INTO `ak_data_system_log` VALUES ('qo79pa9u4gr2dcqo6qi081ahec342893', '192.168.1.5', 1595357197, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373139373B);
+INSERT INTO `ak_data_system_log` VALUES ('qugvnu0gklm9t2v9hk15gc9snvasmk54', '192.168.1.5', 1595357193, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373139333B);
+INSERT INTO `ak_data_system_log` VALUES ('r0k6jl7hfb7792vaebutm4d77oceqg01', '192.168.1.5', 1595354440, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343434303B);
+INSERT INTO `ak_data_system_log` VALUES ('r0qn6n6dpo729ekb26t642dafpia0p19', '192.168.1.5', 1595251027, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313032373B);
+INSERT INTO `ak_data_system_log` VALUES ('r3231g5j2or9veb2kjptbspp50kld0ie', '192.168.1.5', 1595355340, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353334303B);
+INSERT INTO `ak_data_system_log` VALUES ('r4m5ndvnktgck4p998op4k67j5i5gcqe', '192.168.1.5', 1595256777, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363737373B);
+INSERT INTO `ak_data_system_log` VALUES ('r4osc45tdplalu9kvid6belns6aobgm4', '192.168.1.5', 1595354357, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343335373B);
+INSERT INTO `ak_data_system_log` VALUES ('r4qj0d1am64cg3j5tq6hbmf4a8jbo8mr', '192.168.1.5', 1595389657, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338393635373B);
+INSERT INTO `ak_data_system_log` VALUES ('r506ntodaqtltm85228hhi8e438jmti5', '192.168.1.5', 1595256576, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363537353B);
+INSERT INTO `ak_data_system_log` VALUES ('r6o9couh0a6eoq8oidsp6vk5t418i22v', '192.168.1.5', 1595257975, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937353B);
+INSERT INTO `ak_data_system_log` VALUES ('r73achb6njod9vcku96i5dap785dbbs7', '192.168.1.5', 1595390673, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303637333B);
+INSERT INTO `ak_data_system_log` VALUES ('r7bpfqbkiis7fhmiv4nmc6acf02lsvjh', '192.168.1.5', 1595356738, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363733383B);
+INSERT INTO `ak_data_system_log` VALUES ('r8612uagmu5ikpsots056s6da3e7ubbh', '192.168.1.5', 1595357054, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373035343B);
+INSERT INTO `ak_data_system_log` VALUES ('rapqe6dgmbd04jboi99o9n044rnc8po4', '192.168.1.5', 1595251225, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313232353B);
+INSERT INTO `ak_data_system_log` VALUES ('rd2sp9o3tl48q5qfslql2jaso3al6b32', '192.168.1.5', 1595257418, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373431383B);
+INSERT INTO `ak_data_system_log` VALUES ('rec5nvihvrb7utmu1o715642oan0ghsj', '192.168.1.5', 1595390890, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303839303B);
+INSERT INTO `ak_data_system_log` VALUES ('rf5se4au97ij8qfgjduti3e1ac9puj75', '192.168.1.5', 1595391642, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313634323B);
+INSERT INTO `ak_data_system_log` VALUES ('rj1k32l797m4utr5c5pue0rt7s5rign7', '192.168.1.5', 1595383894, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333839343B);
+INSERT INTO `ak_data_system_log` VALUES ('rlqi4h8rmslrenjjvp3k97kcv7ueb7s1', '192.168.1.5', 1595388114, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338383131343B);
+INSERT INTO `ak_data_system_log` VALUES ('rqdur56bm5ago2inse2ql8a0mcfttnc1', '192.168.1.5', 1595354438, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343433383B);
+INSERT INTO `ak_data_system_log` VALUES ('rtrirl67mvltlvt8ur41kubrnh33se23', '192.168.1.5', 1595250541, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534313B);
+INSERT INTO `ak_data_system_log` VALUES ('rttitc5v2as3dq25sevuffta69effr0r', '192.168.1.5', 1595391668, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313636383B);
+INSERT INTO `ak_data_system_log` VALUES ('s1pjbrcntpgjpcb4mmk41ljpc7ccb6ds', '192.168.1.5', 1595257992, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373939323B);
+INSERT INTO `ak_data_system_log` VALUES ('s82bcnd2rganhrvbs1jmobotgilu99an', '192.168.1.5', 1595250556, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303535363B);
+INSERT INTO `ak_data_system_log` VALUES ('safchd95oh0h4ssim0a8osmv7ue7m128', '192.168.1.5', 1595247537, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373533373B);
+INSERT INTO `ak_data_system_log` VALUES ('sbotlkvp16gfecsms3c247tkko0f9jhb', '192.168.1.5', 1595251268, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313236383B);
+INSERT INTO `ak_data_system_log` VALUES ('scofk3ep0l3akr2726rs4op4jb8lnpuo', '192.168.1.5', 1595257013, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373031333B);
+INSERT INTO `ak_data_system_log` VALUES ('sdvog4m90b0rphq87gnug8r37f90v6md', '192.168.1.5', 1595251022, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313032323B);
+INSERT INTO `ak_data_system_log` VALUES ('seqno24qd6r87bp18cneu4l4o4313rfq', '192.168.1.5', 1595251226, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313232363B);
+INSERT INTO `ak_data_system_log` VALUES ('sh55f6tmjl1u7kgljh7dvqq8nsfbd5of', '192.168.1.5', 1595354568, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343536383B);
+INSERT INTO `ak_data_system_log` VALUES ('slof6ldthlh4dep549e5mi7d8sprom83', '192.168.1.5', 1595357190, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373139303B);
+INSERT INTO `ak_data_system_log` VALUES ('t04t8ph5pi5ivrf2goqhaa5s6576eblq', '192.168.1.5', 1595257130, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373133303B);
+INSERT INTO `ak_data_system_log` VALUES ('t07f49g3b1evhll1p6gb2sc89c0mnlbf', '192.168.1.5', 1595251679, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313637393B);
+INSERT INTO `ak_data_system_log` VALUES ('t084u5bgnjk58g0cki3spehruvq185p0', '192.168.1.5', 1595354360, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343336303B);
+INSERT INTO `ak_data_system_log` VALUES ('t4g2tchdftdip8hie4f3q8vkn1j7m74v', '192.168.1.5', 1595257975, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373937353B);
+INSERT INTO `ak_data_system_log` VALUES ('t5a3i6km9152hli8pkrcei9c5n82pu36', '::1', 1595555329, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353535353039363B);
+INSERT INTO `ak_data_system_log` VALUES ('t5gjdlk070bptfvjuhong0rtcel3d6ac', '192.168.1.5', 1595357196, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373139353B);
+INSERT INTO `ak_data_system_log` VALUES ('t6id9n16pfalesgvkodhlni3vjlb1b31', '192.168.1.5', 1595357081, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373038313B);
+INSERT INTO `ak_data_system_log` VALUES ('t9s4mobfg79v08quheuu196irf7l8b7h', '192.168.1.5', 1595251286, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313238363B);
+INSERT INTO `ak_data_system_log` VALUES ('ta6qe20pranv8d5prfqrnv8aaos4sf37', '192.168.1.5', 1595257397, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373339373B);
+INSERT INTO `ak_data_system_log` VALUES ('tgnj9qj2d66omoufqu7otqeu98lq85d6', '192.168.1.5', 1595248291, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383239313B);
+INSERT INTO `ak_data_system_log` VALUES ('ti1kg6lenkkih0khfqp7r0c7gdvv1uu7', '192.168.1.5', 1595257986, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373938363B);
+INSERT INTO `ak_data_system_log` VALUES ('ti7jacbohsetvga87nvaro2m10qio77o', '192.168.1.5', 1595256335, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363333343B);
+INSERT INTO `ak_data_system_log` VALUES ('tp699beg9chjd4qccb7onlqtkt1kgbum', '192.168.1.5', 1595250228, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303232383B);
+INSERT INTO `ak_data_system_log` VALUES ('tqa03jb774em76giq1k13c780uaco0c7', '192.168.1.5', 1595256701, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363730313B);
+INSERT INTO `ak_data_system_log` VALUES ('trvfto9jd726hhvp1iopo69no3nllqbr', '192.168.1.5', 1595356865, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363836353B);
+INSERT INTO `ak_data_system_log` VALUES ('tsc5ddpfpc6ikicep60ojt57m7q8b9cv', '192.168.1.5', 1595251022, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313032323B);
+INSERT INTO `ak_data_system_log` VALUES ('turaf5792a4t4auuru019n2vj5pqd3s6', '192.168.1.5', 1595391663, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313636333B);
+INSERT INTO `ak_data_system_log` VALUES ('u3f6htfie5mrlsrqvrmo0o08ccrsn7c8', '192.168.1.5', 1595390623, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339303632333B);
+INSERT INTO `ak_data_system_log` VALUES ('u3ll2od7v2mhfl03r1ufu9h7grl99rl7', '192.168.1.5', 1595250547, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303534373B);
+INSERT INTO `ak_data_system_log` VALUES ('u91ab0gcvomu1lrfkfa57pa34jg3hb80', '192.168.1.5', 1595250285, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303238353B);
+INSERT INTO `ak_data_system_log` VALUES ('ubtighjg4rskjlgahibmlna7p4161pdi', '192.168.1.5', 1595356737, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335363733373B);
+INSERT INTO `ak_data_system_log` VALUES ('uc4d6r0mpfnk8ifg2e562sjb5o6np9ob', '192.168.1.5', 1595355089, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353038393B);
+INSERT INTO `ak_data_system_log` VALUES ('uc8d8hfs0pn6e98bec04d1i6dh6sst39', '192.168.1.5', 1595248826, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383832363B);
+INSERT INTO `ak_data_system_log` VALUES ('ugqo39i79d43ff3915q22dp107cad3ia', '192.168.1.5', 1595357184, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335373138333B);
+INSERT INTO `ak_data_system_log` VALUES ('umdf03pnftgq633k8e15eu14ie3sedmc', '192.168.1.5', 1595391676, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353339313637363B);
+INSERT INTO `ak_data_system_log` VALUES ('umo1375gokat61lckmddmsmoidmsdjm8', '192.168.1.5', 1595354398, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343339383B);
+INSERT INTO `ak_data_system_log` VALUES ('unrmrvbnldirgeaptqr7imb149uek84b', '192.168.1.5', 1595257429, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373432393B);
+INSERT INTO `ak_data_system_log` VALUES ('urbr9al5snnueqdeu2ha8d7it7i5qj8h', '192.168.1.5', 1595257518, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373531383B);
+INSERT INTO `ak_data_system_log` VALUES ('utd0b2ohhebfk022brgjrimrd4ns0f84', '192.168.1.5', 1595250506, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235303530363B);
+INSERT INTO `ak_data_system_log` VALUES ('v01f63o3ju3hb7tok5s4hh08mj3udjc8', '192.168.1.5', 1595256987, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363938373B);
+INSERT INTO `ak_data_system_log` VALUES ('v03bupmge9nuh0nqdoij049ajao0utmi', '192.168.1.5', 1595354959, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335343935393B);
+INSERT INTO `ak_data_system_log` VALUES ('v4lnnl0p2nb7un2a8s2k9hhksltn37fv', '192.168.1.5', 1595355132, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353335353133323B);
+INSERT INTO `ak_data_system_log` VALUES ('v732h4i0j3t9rq53tpijq8o34b25a6qp', '192.168.1.5', 1595247679, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234373637393B);
+INSERT INTO `ak_data_system_log` VALUES ('vc6ni16u5tt65timl492fbouqbt0iqle', '192.168.1.5', 1595256998, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363939373B);
+INSERT INTO `ak_data_system_log` VALUES ('vivsbs64g32pmh74d979s5h10pihk9n5', '192.168.1.5', 1595251479, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313437393B);
+INSERT INTO `ak_data_system_log` VALUES ('vmuj7a50mc73pjue3k7t49dv07o7gtiu', '192.168.1.5', 1595256808, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235363830383B);
+INSERT INTO `ak_data_system_log` VALUES ('vsin451q08mrfklhbjmu6ibbsuh04vi1', '192.168.1.5', 1595383395, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353338333339353B);
+INSERT INTO `ak_data_system_log` VALUES ('vtegmcctav3o1d9qgssechbqico3v2av', '192.168.1.5', 1595257414, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235373431343B);
+INSERT INTO `ak_data_system_log` VALUES ('vue25kuoqaafvfs6kvmcmei393395u43', '192.168.1.5', 1595248826, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353234383832363B);
+INSERT INTO `ak_data_system_log` VALUES ('vvtej3cjgik0og6g42duqcoauel9v6ev', '192.168.1.5', 1595251056, 0x5F5F63695F6C6173745F726567656E65726174657C693A313539353235313035363B);
+
+-- ----------------------------
+-- Table structure for ak_data_system_user
+-- ----------------------------
+DROP TABLE IF EXISTS `ak_data_system_user`;
+CREATE TABLE `ak_data_system_user`  (
+  `user_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `level_id` bigint(20) UNSIGNED NOT NULL DEFAULT 2,
+  `user_kode` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `user_nama` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `user_login` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `user_pass` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_email` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_jurusan` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_tahun_angkatan` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_jenis_kelamin` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_tempat_lahir` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_tanggal_lahir` date NULL DEFAULT NULL,
+  `user_alamat` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `user_nomor_telepon` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `last_login` datetime(0) NULL DEFAULT NULL,
+  `created_by` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'System',
+  `created_date` datetime(0) NOT NULL DEFAULT current_timestamp(0),
+  `updated_by` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `updated_date` datetime(0) NULL DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`) USING BTREE,
+  UNIQUE INDEX `user_login`(`user_login`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 26 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of ak_data_system_user
+-- ----------------------------
+INSERT INTO `ak_data_system_user` VALUES (1, 1, 'USR/0120/0001', 'SUPPORT', 'support', '$2y$10$nW3UKC5EaVTPgIKOHMckgOdjX6.Ac2Xg4miMpwf1qN/AFXVEGOlAe', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-07-14 14:27:30', 'System', '2020-02-16 17:22:58', NULL, NULL, 0);
+INSERT INTO `ak_data_system_user` VALUES (2, 2, 'USR/0220/0002', 'Admin', 'admin', '$2y$10$nW3UKC5EaVTPgIKOHMckgOdjX6.Ac2Xg4miMpwf1qN/AFXVEGOlAe', 'tata@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-07-23 20:21:50', 'SUPPORT', '2020-02-19 08:30:31', 'SUPPORT', '2020-02-21 20:38:17', 0);
+INSERT INTO `ak_data_system_user` VALUES (3, 3, 'USR/0220/0003', 'BK', 'bk', '$2y$10$RnWCV5Qmiz80VMY44ZprL.ZxJWUccTxuo0YKxpZR8EDjJdf9/b4ri', 'bk@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2020-07-14 11:29:05', 'SUPPORT', '2020-02-19 08:31:18', NULL, NULL, 0);
+INSERT INTO `ak_data_system_user` VALUES (4, 4, 'USR/0220/0004', 'TONO', '150511070', '$2y$10$NBIy7ECc7fWF/lSAvfOMI.SghZLVB7KLT24kMEhzVaTa7IaBZOCRC', 'afiah@gmail.com', 'Teknik Informatika', '2020', 'Wanita', 'Daegu', '2001-04-12', 'Daegu, Korea Selatan', '089648632746', '2020-07-14 11:28:27', 'SUPPORT', '2020-02-20 22:22:09', 'Admin', '2020-07-23 20:22:05', 0);
+INSERT INTO `ak_data_system_user` VALUES (5, 4, 'USR/0220/0005', 'TONI', '150511071', '$2y$10$4VMJcY.CMBFG/vU5.8bMXO44YDD0jznNYECSdTuRMMwpUYJwo7l5O', 'pratamapriadi96@gmail.com', '123', '1', 'Pria', '1', '2020-02-01', '1', '081', '2020-02-21 20:54:39', 'SUPPORT', '2020-02-21 20:33:47', 'Admin', '2020-07-23 20:22:13', 0);
+INSERT INTO `ak_data_system_user` VALUES (24, 4, '', 'TINO', '1595354350', '$2y$10$zQjaJnOJRERHl1zhwi9e1uVt3st8Y7/nrw85105VGOOYT3fCZTlu2', 'imam@gmail.com', 'Sipil', '2111', 'Wanita', '23123', '2020-07-15', 'asddasd', '12312312', NULL, 'System', '2020-07-22 00:59:10', 'Admin', '2020-07-23 20:22:36', 0);
+
+-- ----------------------------
+-- View structure for v_bobot_gap
+-- ----------------------------
+DROP VIEW IF EXISTS `v_bobot_gap`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_bobot_gap` AS SELECT
+gap.user_id,
+bobot.bobot_nilai
+-- gap.subkriteria_id
+FROM
+ak_data_bobot AS bobot
+INNER JOIN v_nilai_gap AS gap ON bobot.bobot_selisih = gap.hasil
+-- WHERE gap.user_id = 4 AND gap.rekomendasi_id = 3
+ORDER BY gap.subkriteria_id ASC ;
+
+-- ----------------------------
+-- View structure for v_nilai_gap
+-- ----------------------------
+DROP VIEW IF EXISTS `v_nilai_gap`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_nilai_gap` AS SELECT
+n.user_id,
+n.subkriteria_id,
+n.siswa_nilai,
+rn.rekomendasi_id,
+rn.rekomendasi_nilai_bobot,
+n.siswa_nilai - rn.rekomendasi_nilai_bobot AS hasil,
+u.user_nama
+FROM
+ak_data_siswa_nilai AS n
+INNER JOIN ak_data_system_user AS u ON n.user_id = u.user_id
+INNER JOIN ak_data_subkriteria AS s ON n.subkriteria_id = s.subkriteria_id
+INNER JOIN ak_data_rekomendasi_nilai AS rn ON rn.subkriteria_id = s.subkriteria_id
+ORDER BY
+rn.subkriteria_id ASC ;
+
+-- ----------------------------
+-- View structure for v_rekomendasi_nilai
+-- ----------------------------
+DROP VIEW IF EXISTS `v_rekomendasi_nilai`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_rekomendasi_nilai` AS SELECT
+ak_data_rekomendasi_nilai.rekomendasi_nilai_id,
+ak_data_rekomendasi_nilai.rekomendasi_id,
+ak_data_rekomendasi.rekomendasi_kode,
+ak_data_rekomendasi_nilai.subkriteria_id,
+ak_data_subkriteria.subkriteria_nama,
+ak_data_rekomendasi_nilai.kriteria_id,
+ak_data_kriteria.kriteria_nama,
+ak_data_rekomendasi_nilai.rekomendasi_nilai_bobot
+FROM
+ak_data_rekomendasi_nilai
+INNER JOIN ak_data_rekomendasi ON ak_data_rekomendasi_nilai.rekomendasi_id = ak_data_rekomendasi.rekomendasi_id
+INNER JOIN ak_data_subkriteria ON ak_data_rekomendasi_nilai.subkriteria_id = ak_data_subkriteria.subkriteria_id
+INNER JOIN ak_data_kriteria ON ak_data_subkriteria.kriteria_id = ak_data_kriteria.kriteria_id ;
+
+-- ----------------------------
+-- View structure for v_siswa_nilai
+-- ----------------------------
+DROP VIEW IF EXISTS `v_siswa_nilai`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_siswa_nilai` AS SELECT
+ak_data_siswa_nilai.nilai_id,
+ak_data_siswa_nilai.subkriteria_id,
+ak_data_siswa_nilai.user_id,
+ak_data_siswa_nilai.siswa_nilai,
+ak_data_subkriteria.subkriteria_nama,
+ak_data_subkriteria.subkriteria_kode,
+ak_data_system_user.user_nama
+FROM
+ak_data_siswa_nilai
+INNER JOIN ak_data_subkriteria ON ak_data_siswa_nilai.subkriteria_id = ak_data_subkriteria.subkriteria_id
+INNER JOIN ak_data_system_user ON ak_data_siswa_nilai.user_id = ak_data_system_user.user_id ;
+
+-- ----------------------------
+-- View structure for v_subkriteria
+-- ----------------------------
+DROP VIEW IF EXISTS `v_subkriteria`;
+CREATE ALGORITHM = UNDEFINED SQL SECURITY DEFINER VIEW `v_subkriteria` AS SELECT
+ak_data_subkriteria.subkriteria_id,
+ak_data_subkriteria.kriteria_id,
+ak_data_subkriteria.subkriteria_kode,
+ak_data_subkriteria.subkriteria_nama,
+ak_data_subkriteria.subkriteria_keterangan,
+ak_data_subkriteria.created_by,
+ak_data_subkriteria.created_date,
+ak_data_subkriteria.updated_by,
+ak_data_subkriteria.updated_date,
+ak_data_subkriteria.deleted,
+ak_data_kriteria.kriteria_nama
+FROM
+ak_data_subkriteria
+INNER JOIN ak_data_kriteria ON ak_data_subkriteria.kriteria_id = ak_data_kriteria.kriteria_id ;
+
+SET FOREIGN_KEY_CHECKS = 1;
